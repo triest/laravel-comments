@@ -10,7 +10,6 @@ class CommentController extends Controller
 {
 
 
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +18,10 @@ class CommentController extends Controller
     public function index()
     {
         //
-        die("d");
+        $commentService = new CommentService();
+        $comments = $commentService->getRoot();
+        $child=$commentService->getChild();
+        return response()->json(['root'=>$comments,'child'=>$child]);
     }
 
     /**
@@ -41,10 +43,10 @@ class CommentController extends Controller
     public function store(RComment $request)
     {
         //
-        $commentService=new CommentService();
-        $comment=$commentService->create($request->text,$request->parent_id);
+        $commentService = new CommentService();
+        $comment = $commentService->create($request->text, $request->parent_id);
 
-       return  response()->json($comment);
+        return response()->json($comment);
     }
 
     /**
