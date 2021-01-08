@@ -16,12 +16,12 @@ class CommentService
 
     public function getRoot()
     {
-        return Comment::select(['*'])->where(['parent_id' => null])->orderBy('created_at', 'desc')->get();
+        return Comment::select(['*'])->where(['parent_id' => null])->with('user')->orderBy('created_at', 'desc')->get();
     }
 
     public function getChild()
     {
-        return Comment::select(['*'])->whereNotNull(['parent_id'])->orderBy('created_at', 'desc')->get();
+        return Comment::select(['*'])->whereNotNull(['parent_id'])->with('user')->orderBy('created_at', 'desc')->get();
     }
 
     public function create($text, $parent_id = null)

@@ -7,17 +7,12 @@
             <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
                title="Оценить комментарий"><i class="fa fa-minus"></i></a>
             <span class="comment-rating comment-plus" data-reply-show-user-id="1211953">
-                                    28                                </span>
+                                  {{ comment.user.name }}   {{ comment.created_at }}
+             <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+            </span>
             <a href="javascript://" data-reply-rating="plus" data-reply-rating-id="1211953"
                title="Оценить комментарий"><i class="fa fa-plus"></i></a>
           </div>
-        </div>
-        <div class="title">
-          <a href="/forum/members/zashkvarder.713998/activity/site-comments/">
-            {{ comment.author }} </a>
-          <a href="javascript://" class="comments-to" data-id="1211953">
-            <span class="time" data-time="2020-09-29T12:45:43+03:00">{{ comment.created_at }}</span>
-          </a>
         </div>
       </div>
 
@@ -26,7 +21,10 @@
     <div class="text">
       {{ comment.text }}
     </div>
-
+    <div v-if="showAnswerFormVariable===true">
+      <textarea id="answer" :name="'comment'+comment.id" ref="'comment'+comment.id" v-model="comment_text"></textarea><br>
+      <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
+    </div>
     <div v-if="getChild(comment)">
       <comment :comments="childdsGett" :childs="childs"></comment>
     </div>
@@ -53,15 +51,17 @@ export default {
   data() {
     return {
       first: true,
-      childdsGett:[]
+      childdsGett: [],
+      showAnswerFormVariable: false
     }
   },
   mounted() {
     console.log('Comments mounted');
     //this.getComments()
-  //  console.log("childs comments")
-   // console.log(this.childs)
+    //  console.log("childs comments")
+    // console.log(this.childs)
   },
+  computed: {},
   methods:
       {
 
@@ -80,18 +80,38 @@ export default {
         getChild(item) {
           console.log("get childs")
           for (let i = 0; i < this.childs.length; i++) {
-                console.log(this.childs[i].id)
-                  if(item.id===this.childs[i].parent_id){
-                        console.log("finded child")
-                        this.childdsGett.push(this.childs[i])
-                  }
+            console.log(this.childs[i].id)
+            if (item.id === this.childs[i].parent_id) {
+              console.log("finded child")
+              this.childdsGett.push(this.childs[i])
+            }
           }
           return true;
+        },
+        showAnswerForm(comment_id) {
+          this.showAnswerFormVariable = true;
+        },
+        answer(comment_id) {
+          axios.post('api/comment', {'parent_id':comment_id,'text':this.comment_text}).then(function () {
+
+          }).catch()
         }
       }
 }
 </script>
 
 <style scoped>
+.comment-rating {
+  color: dimgray;
+  font-family: Roboto;
+}
 
+.text {
+  color: grey;
+  font-family: Roboto;
+}
+
+.answerButton {
+  cursor: pointer;
+}
 </style>

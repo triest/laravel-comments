@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RComment;
+use App\Http\Resources\CommentResourse;
 use App\Service\CommentService;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,7 @@ class CommentController extends Controller
         $comments = $commentService->getRoot();
         $child=$commentService->getChild();
 
+        //return CommentResourse::collection($comments);
         return response()->json(['root'=>$comments,'child'=>$child]);
     }
 
