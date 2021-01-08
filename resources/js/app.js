@@ -23,7 +23,10 @@ Vue.use(CommentGrid)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('comment', require('./components/Comment.vue').default)
+Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('comment-item', require('./components/CommentItem.vue').default);
+Vue.component('comment-app', require('./components/commentsApp.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

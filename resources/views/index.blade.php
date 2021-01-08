@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <comment></comment>
+    <comment-app></comment-app>
 
 @endsection

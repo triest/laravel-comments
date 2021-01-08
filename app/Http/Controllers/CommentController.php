@@ -21,6 +21,7 @@ class CommentController extends Controller
         $commentService = new CommentService();
         $comments = $commentService->getRoot();
         $child=$commentService->getChild();
+
         return response()->json(['root'=>$comments,'child'=>$child]);
     }
 

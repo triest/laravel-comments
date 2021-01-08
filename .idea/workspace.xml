@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24aec472-2735-406a-a4a9-0f660a4cfbba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/CommentItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/commentsApp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Service/CommentService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/CommentService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Comment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Comment.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +20,19 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -178,24 +188,53 @@
       <workItem from="1610045178011" duration="1269000" />
       <workItem from="1610046993666" duration="3121000" />
       <workItem from="1610093116718" duration="1941000" />
+      <workItem from="1610095255593" duration="808000" />
+      <workItem from="1610100174617" duration="1802000" />
+      <workItem from="1610102076600" duration="1961000" />
+      <workItem from="1610104056576" duration="2273000" />
+      <workItem from="1610106360846" duration="1574000" />
+      <workItem from="1610108311294" duration="981000" />
+      <workItem from="1610109614300" duration="1749000" />
+      <workItem from="1610111410232" duration="1134000" />
     </task>
+    <task id="LOCAL-00001" summary="Base component">
+      <created>1610095446480</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610095446480</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Base component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base component" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1610023066162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1610023066162" />
+    <state x="585" y="87" key="CommitChangelistDialog2" timestamp="1610095443214">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="87" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610095443214" />
     <state x="697" y="241" key="NewPhpClassDialog" timestamp="1610022816990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="697" y="241" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610022816990" />
-    <state x="794" y="442" key="NewPhpFileDialog" timestamp="1610011459394">
+    <state x="794" y="442" key="NewPhpFileDialog" timestamp="1610102266572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="442" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610011459394" />
+    <state x="794" y="442" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610102266572" />
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2" timestamp="1610095448658">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610095448658" />
   </component>
 </project>
