@@ -1932,19 +1932,12 @@ __webpack_require__.r(__webpack_exports__);
       first: true
     };
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-    console.log('comments');
-    console.log(this.comments); //   this.getComments()
-
-    console.log("child in comment");
-    console.log(this.childs);
-  },
+  mounted: function mounted() {},
   methods: {
     getComments: function getComments() {
       var _this = this;
 
-      axios.get('api/comment').then(function (response) {
+      axios.get('comment').then(function (response) {
         _this.comments = response.data.root;
       });
     },
@@ -1963,6 +1956,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2019,35 +2013,21 @@ __webpack_require__.r(__webpack_exports__);
       showAnswerFormVariable: false
     };
   },
-  mounted: function mounted() {
-    console.log('Comments mounted'); //this.getComments()
-    //  console.log("childs comments")
-    // console.log(this.childs)
-  },
+  mounted: function mounted() {},
   computed: {},
   methods: {
     checkChild: function checkChild(item) {
-      console.log("check item");
-      console.log(this.childs);
-
       for (var i = 0; i < this.childs.length; i++) {
         if (this.childs[i].parent_id == item.id) {
-          console.log(true);
           return true;
         }
       }
 
-      console.log(false);
       return false;
     },
     getChild: function getChild(item) {
-      console.log("get childs");
-
       for (var i = 0; i < this.childs.length; i++) {
-        console.log(this.childs[i].id);
-
         if (item.id === this.childs[i].parent_id) {
-          console.log("finded child");
           this.childdsGett.push(this.childs[i]);
         }
       }
@@ -2058,10 +2038,14 @@ __webpack_require__.r(__webpack_exports__);
       this.showAnswerFormVariable = true;
     },
     answer: function answer(comment_id) {
+      var that = this;
       axios.post('api/comment', {
         'parent_id': comment_id,
         'text': this.comment_text
-      }).then(function () {})["catch"]();
+      }).then(function (data) {
+        console.log(data.data);
+        that.childdsGett.push(data.data);
+      })["catch"]();
     }
   }
 });
@@ -2100,7 +2084,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
     this.getComments();
   },
   methods: {
@@ -2133,8 +2116,13 @@ __webpack_require__.r(__webpack_exports__);
       child: null
     };
   },
+  props: {
+    user: {
+      type: Object,
+      required: false
+    }
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
     this.getComments();
   },
   methods: {
@@ -2144,11 +2132,8 @@ __webpack_require__.r(__webpack_exports__);
       var temp = null;
       axios.get('api/comment').then(function (response) {
         temp = response.data;
-        console.log(temp);
         _this.comments = temp.root;
         _this.child = temp.child;
-        console.log("child in main");
-        console.log(_this.child);
       });
     },
     getChild: function getChild(parent_id) {}
@@ -41185,9 +41170,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                                " +
-                      _vm._s(_vm.comment.user.name) +
-                      "   " +
+                    "\n                                  " +
                       _vm._s(_vm.comment.created_at) +
                       "\n           "
                   ),
@@ -53585,7 +53568,12 @@ Vue.component('comment-app', __webpack_require__(/*! ./components/commentsApp.vu
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: function data() {
+    return {
+      comment_text: null
+    };
+  }
 });
 
 /***/ }),

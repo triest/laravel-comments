@@ -24,17 +24,12 @@ export default {
     }
   },
   mounted() {
-    console.log('Component mounted.');
-    console.log('comments')
-    console.log(this.comments)
- //   this.getComments()
-    console.log("child in comment")
-    console.log(this.childs)
+
   },
   methods:
       {
         getComments() {
-          axios.get('api/comment')
+          axios.get('comment')
               .then((response) => {
                   this.comments=response.data.root;
 

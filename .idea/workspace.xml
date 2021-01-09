@@ -5,17 +5,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24aec472-2735-406a-a4a9-0f660a4cfbba" name="Default Changelist" comment="Add pos">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CommentResourse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_08_135020_comments_add_author_id.php" afterDir="false" />
+    <list default="true" id="24aec472-2735-406a-a4a9-0f660a4cfbba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Service/CommentService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/CommentService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Comment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Comment.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/commentsApp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/commentsApp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +152,20 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mjWintWEG9EQfED79HrO64pcc2" />
@@ -207,7 +230,15 @@
       <workItem from="1610117422701" duration="1943000" />
       <workItem from="1610119441015" duration="2668000" />
       <workItem from="1610122174710" duration="1762000" />
-      <workItem from="1610124074950" duration="361000" />
+      <workItem from="1610124074950" duration="435000" />
+      <workItem from="1610126089192" duration="2019000" />
+      <workItem from="1610128129142" duration="2463000" />
+      <workItem from="1610130922745" duration="1799000" />
+      <workItem from="1610132748021" duration="1795000" />
+      <workItem from="1610134557906" duration="1790000" />
+      <workItem from="1610136370412" duration="540000" />
+      <workItem from="1610179206747" duration="1747000" />
+      <workItem from="1610181088866" duration="715000" />
     </task>
     <task id="LOCAL-00001" summary="Base component">
       <created>1610095446480</created>
@@ -223,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610112755385</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add post comment">
+      <created>1610124496272</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610124496272</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,17 +308,22 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Base component" />
     <MESSAGE value="Add child comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add child comment" />
+    <MESSAGE value="Add post comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add post comment" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1610023066162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1610023066162" />
-    <state x="585" y="87" key="CommitChangelistDialog2" timestamp="1610124408777">
+    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610132064735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="87" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610124408777" />
+    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610132064735" />
+    <state x="585" y="87" key="CommitChangelistDialog2" timestamp="1610124493945">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="87" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610124493945" />
     <state x="697" y="241" key="NewPhpClassDialog" timestamp="1610022816990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -289,9 +332,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="442" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610102266572" />
-    <state x="552" y="238" key="Vcs.Push.Dialog.v2" timestamp="1610112778639">
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2" timestamp="1610124498474">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610112778639" />
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610124498474" />
+    <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1610127316049">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="253" width="587" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610127316049" />
   </component>
 </project>

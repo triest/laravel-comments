@@ -36,4 +36,9 @@ Vue.component('comment-app', require('./components/commentsApp.vue').default);
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            comment_text: null,
+        }
+    }
 });

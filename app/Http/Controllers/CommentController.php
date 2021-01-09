@@ -6,6 +6,7 @@ use App\Http\Requests\RComment;
 use App\Http\Resources\CommentResourse;
 use App\Service\CommentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -21,10 +22,10 @@ class CommentController extends Controller
         //
         $commentService = new CommentService();
         $comments = $commentService->getRoot();
-        $child=$commentService->getChild();
+        $child = $commentService->getChild();
 
         //return CommentResourse::collection($comments);
-        return response()->json(['root'=>$comments,'child'=>$child]);
+        return response()->json(['root' => $comments, 'child' => $child]);
     }
 
     /**
@@ -45,7 +46,7 @@ class CommentController extends Controller
      */
     public function store(RComment $request)
     {
-        //
+
         $commentService = new CommentService();
         $comment = $commentService->create($request->text, $request->parent_id);
 

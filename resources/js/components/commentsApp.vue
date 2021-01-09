@@ -12,8 +12,14 @@ export default {
       child: null
     }
   },
+  props: {
+    user: {
+      type: Object,
+      required: false
+    },
+
+  },
   mounted() {
-    console.log('Component mounted.');
     this.getComments()
   },
   methods:
@@ -23,11 +29,8 @@ export default {
           axios.get('api/comment')
               .then((response) => {
                 temp=response.data;
-                console.log(temp)
                 this.comments = temp.root;
                 this.child = temp.child;
-                console.log("child in main")
-                console.log(this.child)
               });
 
         },

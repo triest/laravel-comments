@@ -1,7 +1,7 @@
-@extends('layouts.comments')
+@extends('layouts.app')
 
 @section('content')
 
-    <comment-app></comment-app>
+    <comment-app ></comment-app>
 
 @endsection
