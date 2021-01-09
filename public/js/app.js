@@ -6589,7 +6589,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".comment-rating[data-v-c63b9012] {\n  color: dimgray;\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}", ""]);
+exports.push([module.i, ".comment-rating[data-v-c63b9012] {\n  color: dimgray;\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}", ""]);
 
 // exports
 
@@ -41299,9 +41299,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "wrapper" }, [
-      _c("i", { staticClass: "css-clock" })
-    ])
+    return _c("span", [_c("i", { staticClass: "css-clock" })])
   },
   function() {
     var _vm = this

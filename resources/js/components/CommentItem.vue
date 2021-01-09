@@ -10,7 +10,7 @@
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{ comment.user.name }}
-                 <span class="wrapper">
+                 <span>
                             <i class="css-clock"></i>
 </span> {{ comment.created_at }}
 
@@ -140,6 +140,8 @@ export default {
 .wrapper{
   margin: 0 auto;
   background-color: transparent ;
+  width: 1px;
+  display: inline-block;
 }
 .css-clock{
   width:18px;
