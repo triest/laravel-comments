@@ -48,8 +48,10 @@ class CommentService
         $comment->save();
 
         $user->comment()->save($comment);
+
+        return Comment::select(['*'])->where(['id' => $comment->id])->with('user')->orderBy('created_at', 'desc')->first();
     //    $comment->user()->save($user);
 
-        return $comment;
+
     }
 }

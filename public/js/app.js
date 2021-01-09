@@ -1916,6 +1916,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comments: {
@@ -1929,7 +1934,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      first: true
+      first: true,
+      message: ""
     };
   },
   mounted: function mounted() {},
@@ -2022,7 +2028,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {},
-  computed: {},
   methods: {
     checkChild: function checkChild(item) {
       for (var i = 0; i < this.childs.length; i++) {
@@ -2053,8 +2058,39 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (data) {
         that.childdsGett.push(data.data);
       })["catch"]();
+    },
+    time: function time(_time) {
+      console.log(_time);
+      var date1 = new Date(_time);
+      var date2 = new Date();
+      console.log(date1);
+      console.log(date2);
+      var Time = date2.getTime() - date1.getTime();
+      var Hours = Time / (1000 * 60 * 60);
+      var Days = Time / (1000 * 3600 * 24);
+      var Minuts = Time / 60;
+      console.log("minuts " + Minuts);
+      console.log("Hours " + Hours);
+      console.log("days " + Days);
+
+      if (Days >= 1) {
+        return Math.round(Days) + " дня назад";
+      }
+
+      if (Hours >= 1) {
+        return Math.round(Hours) + " часа назад";
+      }
+
+      if (Minuts > 1) {
+        return Math.round(Minuts) + " минут назад";
+      }
+
+      return Time / (1000 * 60 * 60);
     }
   }
+});
+Vue.filter('moment-ago', function (date) {
+  return moment(date).fromNow();
 });
 
 /***/ }),
@@ -2115,6 +2151,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -2143,7 +2183,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.child = temp.child;
       });
     },
-    getChild: function getChild(parent_id) {}
+    send: function send() {
+      var that = this;
+      axios.post('api/comment', {
+        'text': this.comment_text
+      }).then(function (data) {
+        that.comments.push(data.data[0]);
+      })["catch"]();
+    }
   }
 });
 
@@ -41117,22 +41164,37 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.comments, function(item) {
-      return _c(
-        "div",
-        { staticClass: "site-comment" },
-        [
-          _c("comment-item", {
-            attrs: { comment: item, comments: _vm.comments, childs: _vm.childs }
-          })
-        ],
-        1
-      )
-    }),
-    0
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.comments, function(item) {
+        return _c(
+          "div",
+          { staticClass: "site-comment" },
+          [
+            _c("comment-item", {
+              attrs: {
+                comment: item,
+                comments: _vm.comments,
+                childs: _vm.childs
+              }
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "composer" }, [_c("br")])
+  }
+]
 render._withStripped = true
 
 
@@ -41188,13 +41250,13 @@ var render = function() {
                     }),
                     _vm._v(
                       "\n                     " +
-                        _vm._s(_vm.comment.user.name) +
+                        _vm._s() +
                         "\n                 "
                     ),
                     _vm._m(1),
                     _vm._v(
                       " " +
-                        _vm._s(_vm.comment.created_at) +
+                        _vm._s(_vm.time(_vm.comment.created_at)) +
                         "\n\n                    "
                     ),
                     _c(
@@ -41385,7 +41447,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("comment", { attrs: { comments: _vm.comments, childs: _vm.child } })
+  return _c(
+    "div",
+    [
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.comment_text,
+            expression: "comment_text"
+          }
+        ],
+        attrs: { placeholder: "Введите сообщение!" },
+        domProps: { value: _vm.comment_text },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.comment_text = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.send } }, [_vm._v("Отправить")]),
+      _vm._v(" "),
+      _c("comment", { attrs: { comments: _vm.comments, childs: _vm.child } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

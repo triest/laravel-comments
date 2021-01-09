@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div class="composer">
+
+      <br>
+
+    </div>
     <div class="site-comment" v-for="item in comments">
         <comment-item :comment="item" :comments="comments" :childs="childs"></comment-item>
     </div>
@@ -20,7 +25,8 @@ export default {
   },
   data(){
     return {
-      first: true
+      first: true,
+      message:""
     }
   },
   mounted() {

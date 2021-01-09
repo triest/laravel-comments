@@ -1,5 +1,9 @@
 <template>
+  <div>
+    <textarea   v-model="comment_text" placeholder="Введите сообщение!"></textarea>
+    <button  @click="send">Отправить</button>
     <comment :comments="comments" :childs="child"></comment>
+  </div>
 </template>
 
 <script>
@@ -25,18 +29,21 @@ export default {
   methods:
       {
         getComments() {
-          let temp=null;
+          let temp = null;
           axios.get('api/comment')
               .then((response) => {
-                temp=response.data;
+                temp = response.data;
                 this.comments = temp.root;
                 this.child = temp.child;
               });
 
         },
-        getChild(parent_id) {
-
-        }
+         send(){
+           let that = this;
+           axios.post('api/comment', {'text': this.comment_text}).then(function (data) {
+             that.comments.push(data.data[0])
+           }).catch()
+         }
       }
 }
 </script>

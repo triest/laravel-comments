@@ -9,10 +9,10 @@
             <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
-                     {{ comment.user.name }}
+                     {{  }}
                  <span>
                             <i class="css-clock"></i>
-</span> {{ comment.created_at }}
+</span> {{ time(comment.created_at) }}
 
                     <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                </span>
@@ -67,7 +67,7 @@ export default {
   mounted() {
 
   },
-  computed: {},
+
   methods:
       {
         checkChild(item) {
@@ -94,9 +94,42 @@ export default {
           axios.post('api/comment', {'parent_id': comment_id, 'text': this.comment_text}).then(function (data) {
             that.childdsGett.push(data.data)
           }).catch()
+        },
+        time(time){
+            console.log(time)
+          var date1 = new Date(time);
+          var date2 = new Date();
+          console.log(date1);
+          console.log(date2);
+
+          var Time = date2.getTime() - date1.getTime();
+          var Hours=Time/(1000*60*60);
+          var Days = Time / (1000 * 3600 * 24);
+          var Minuts=Time/60
+          console.log("minuts "+Minuts)
+          console.log("Hours "+Hours)
+          console.log("days "+Days)
+
+          if(Days>=1){
+            return Math.round(Days)+ " дня назад"
+          }
+
+          if(Hours>=1){
+            return Math.round(Hours)+ " часа назад"
+          }
+
+          if(Minuts>1){
+            return Math.round(Minuts)+ " минут назад"
+          }
+
+          return Time/(1000*60*60)
         }
+
       }
 }
+Vue.filter('moment-ago', function (date) {
+  return moment(date).fromNow()
+})
 </script>
 
 <style lang="scss" scoped>

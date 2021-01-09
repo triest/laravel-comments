@@ -28,15 +28,7 @@ class CommentController extends Controller
         return response()->json(['root' => $comments, 'child' => $child]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +42,7 @@ class CommentController extends Controller
         $commentService = new CommentService();
         $comment = $commentService->create($request->text, $request->parent_id);
 
-        return response()->json($comment);
+        return response()->json([$comment]);
     }
 
     /**
