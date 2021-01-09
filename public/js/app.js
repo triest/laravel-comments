@@ -1917,9 +1917,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comments: {
@@ -2122,9 +2119,9 @@ __webpack_require__.r(__webpack_exports__);
       var date1 = new Date(_time);
       var date2 = new Date();
       var Time = date2.getTime() - date1.getTime();
-      var Hours = Time / (1000 * 60 * 60);
-      var Days = Time / (1000 * 3600 * 24);
-      var Minuts = Time / 60;
+      var Hours = Time / (60 * 60 * 1000);
+      var Days = Time / (3600 * 24 * 1000);
+      var Minuts = Time / (60 * 1000);
 
       if (Days >= 1) {
         return Math.round(Days) + " дня назад";
@@ -41220,28 +41217,24 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [
-      _c("div", { staticClass: "composer" }),
-      _vm._v(" "),
-      _vm._l(_vm.comments, function(item) {
-        return _c(
-          "div",
-          { staticClass: "site-comment" },
-          [
-            _c("comment-item", {
-              attrs: {
-                comment: item,
-                comments: _vm.comments,
-                childs: _vm.childs
-              },
-              on: { new: _vm.saveNewMessage }
-            })
-          ],
-          1
-        )
-      })
-    ],
-    2
+    _vm._l(_vm.comments, function(item) {
+      return _c(
+        "div",
+        { staticClass: "site-comment" },
+        [
+          _c("comment-item", {
+            attrs: {
+              comment: item,
+              comments: _vm.comments,
+              childs: _vm.childs
+            },
+            on: { new: _vm.saveNewMessage }
+          })
+        ],
+        1
+      )
+    }),
+    0
   )
 }
 var staticRenderFns = []

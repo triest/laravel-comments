@@ -1,9 +1,6 @@
 <template>
   <div class="container">
-    <div class="composer">
 
-
-    </div>
     <div class="site-comment" v-for="item in comments">
         <comment-item :comment="item" :comments="comments" :childs="childs" @new="saveNewMessage"></comment-item>
     </div>

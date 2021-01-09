@@ -146,9 +146,9 @@ export default {
 
 
           var Time = date2.getTime() - date1.getTime();
-          var Hours = Time / (1000 * 60 * 60);
-          var Days = Time / (1000 * 3600 * 24);
-          var Minuts = Time / 60
+          var Hours = Time / ( 60 * 60*1000);
+          var Days = Time / ( 3600 * 24*1000);
+          var Minuts = Time / (60*1000)
 
 
           if (Days >= 1) {
