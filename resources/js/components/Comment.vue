@@ -6,7 +6,7 @@
 
     </div>
     <div class="site-comment" v-for="item in comments">
-        <comment-item :comment="item" :comments="comments" :childs="childs"></comment-item>
+        <comment-item :comment="item" :comments="comments" :childs="childs" @new="saveNewMessage"></comment-item>
     </div>
   </div>
 </template>
@@ -43,7 +43,10 @@ export default {
         },
         getChild(parent_id){
 
-        }
+        },
+        saveNewMessage(message) {
+          this.comments.push(message);
+        },
       }
 }
 </script>

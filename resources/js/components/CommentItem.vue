@@ -93,6 +93,7 @@ export default {
           let that = this;
           axios.post('api/comment', {'parent_id': comment_id, 'text': this.comment_text}).then(function (data) {
             that.childdsGett.push(data.data)
+            this.$emit('new', data,data);
           }).catch()
         },
         time(time){

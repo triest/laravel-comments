@@ -1947,7 +1947,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.comments = response.data.root;
       });
     },
-    getChild: function getChild(parent_id) {}
+    getChild: function getChild(parent_id) {},
+    saveNewMessage: function saveNewMessage(message) {
+      this.comments.push(message);
+    }
   }
 });
 
@@ -2057,6 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
         'text': this.comment_text
       }).then(function (data) {
         that.childdsGett.push(data.data);
+        this.$emit('new', data, data);
       })["catch"]();
     },
     time: function time(_time) {
@@ -41177,7 +41181,8 @@ var render = function() {
                 comment: item,
                 comments: _vm.comments,
                 childs: _vm.childs
-              }
+              },
+              on: { new: _vm.saveNewMessage }
             })
           ],
           1
