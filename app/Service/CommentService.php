@@ -45,9 +45,10 @@ class CommentService
         $comment = new Comment();
         $comment->text = $text;
         $comment->parent_id = $parent_id;
+        $comment->user_id=$user->id;
         $comment->save();
 
-        $user->comment()->save($comment);
+  //      $user->comment()->save($comment);
 
         return Comment::select(['*'])->where(['id' => $comment->id])->with('user')->orderBy('created_at', 'desc')->first();
     //    $comment->user()->save($user);
