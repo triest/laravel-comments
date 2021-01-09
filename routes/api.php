@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('comment', CommentController::class)->except('create','edit');
+Route::post('/comment/like','CommentController@like');
+

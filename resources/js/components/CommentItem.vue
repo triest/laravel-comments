@@ -15,6 +15,10 @@
 </span> {{ time(comment.created_at) }}
 
                     <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+                 {{ likesNum }}
+                 <button
+                     v-on:click="newLike(comment.id)">like</button>
+                   <button v-on:click="dislike(comment.id)">dislike</button>
                </span>
 
             </span>
@@ -61,15 +65,47 @@ export default {
     return {
       first: true,
       childdsGett: [],
-      showAnswerFormVariable: false
+      showAnswerFormVariable: false,
+      likesNum: 0
     }
   },
   mounted() {
-
+    this.calculate_likes();
   },
 
   methods:
       {
+        calculate_likes() {
+          let accum = 0;
+          //    console.log("likes")
+          //    console.log(this.comment.like);
+          for (let i = 0; i < this.comment.like.length; i++) {
+            console.log(this.comment.like[i])
+            accum += this.comment.like[i].value
+          }
+          this.likesNum = accum;
+        },
+
+        newLike(comment_id) {
+          let that = this;
+          axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
+            console.log(data.data.result)
+            if (data.data.result === true) {
+              that.likesNum = that.likesNum + 1;
+            }
+            console.log(that.likesNum);
+          }).catch()
+        },
+        dislike(comment_id) {
+          let that = this;
+          axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
+            console.log(data.data.result)
+            if (data.data.result === true) {
+              that.likesNum = that.likesNum - 1;
+            }
+            console.log(that.likesNum);
+          }).catch()
+        },
         checkChild(item) {
           for (let i = 0; i < this.childs.length; i++) {
             if (this.childs[i].parent_id == item.id) {
@@ -87,43 +123,47 @@ export default {
           return true;
         },
         showAnswerForm(comment_id) {
-          this.showAnswerFormVariable = true;
+          if (!this.showAnswerFormVariable) {
+            this.showAnswerFormVariable = true;
+          } else {
+            this.showAnswerFormVariable = false;
+          }
         },
         answer(comment_id) {
           let that = this;
           axios.post('api/comment', {'parent_id': comment_id, 'text': this.comment_text}).then(function (data) {
-            that.childdsGett.push(data.data)
-            this.$emit('new', data,data);
+            let data2 = data.data;
+
+            that.childdsGett.push(data2[0])
+            //     that.childs.push(data2[0])
+            //that.$emit('new', data.data);
           }).catch()
         },
-        time(time){
-            console.log(time)
+        time(time) {
+
           var date1 = new Date(time);
           var date2 = new Date();
-          console.log(date1);
-          console.log(date2);
+
 
           var Time = date2.getTime() - date1.getTime();
-          var Hours=Time/(1000*60*60);
+          var Hours = Time / (1000 * 60 * 60);
           var Days = Time / (1000 * 3600 * 24);
-          var Minuts=Time/60
-          console.log("minuts "+Minuts)
-          console.log("Hours "+Hours)
-          console.log("days "+Days)
+          var Minuts = Time / 60
 
-          if(Days>=1){
-            return Math.round(Days)+ " дня назад"
+
+          if (Days >= 1) {
+            return Math.round(Days) + " дня назад"
           }
 
-          if(Hours>=1){
-            return Math.round(Hours)+ " часа назад"
+          if (Hours >= 1) {
+            return Math.round(Hours) + " часа назад"
           }
 
-          if(Minuts>1){
-            return Math.round(Minuts)+ " минут назад"
+          if (Minuts > 1) {
+            return Math.round(Minuts) + " минут назад"
           }
 
-          return Time/(1000*60*60)
+          return Time / (1000 * 60 * 60)
         }
 
       }
@@ -171,25 +211,28 @@ Vue.filter('moment-ago', function (date) {
     margin-right: 10px;
   }
 }
-.wrapper{
+
+.wrapper {
   margin: 0 auto;
-  background-color: transparent ;
+  background-color: transparent;
   width: 1px;
   display: inline-block;
 }
-.css-clock{
-  width:18px;
+
+.css-clock {
+  width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: transparent  ;
-  border-color:red;
+  background-color: transparent;
+  border-color: red;
   filter: alpha(Opacity=70);
   border: 1rem solid;
-  border-color:white;
-  border-width: thin ;
+  border-color: white;
+  border-width: thin;
   position: relative;
-  display:block;
-  &::before{
+  display: block;
+
+  &::before {
     content: "";
     height: 6px;
     width: 2px;
@@ -200,7 +243,8 @@ Vue.filter('moment-ago', function (date) {
     top: 3px;
     opacity: 0.6;
   }
-  &::after{
+
+  &::after {
     content: "";
     height: 5px;
     width: 2px;

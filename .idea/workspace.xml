@@ -6,10 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24aec472-2735-406a-a4a9-0f660a4cfbba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_09_143057_create_like_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Service/CommentService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/CommentService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Comment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Comment.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CommentItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommentItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/commentsApp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/commentsApp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +238,17 @@
       <workItem from="1610192802333" duration="1826000" />
       <workItem from="1610194719288" duration="1732000" />
       <workItem from="1610196564912" duration="1726000" />
-      <workItem from="1610198484978" duration="230000" />
+      <workItem from="1610198484978" duration="1711000" />
+      <workItem from="1610202577238" duration="1737000" />
+      <workItem from="1610204370869" duration="1806000" />
+      <workItem from="1610206209674" duration="1548000" />
+      <workItem from="1610208051482" duration="1873000" />
+      <workItem from="1610209939707" duration="1795000" />
+      <workItem from="1610212215106" duration="1599000" />
+      <workItem from="1610214081138" duration="1190000" />
+      <workItem from="1610215998830" duration="608000" />
+      <workItem from="1610223761090" duration="1875000" />
+      <workItem from="1610225705008" duration="39000" />
     </task>
     <task id="LOCAL-00001" summary="Base component">
       <created>1610095446480</created>
@@ -282,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610197023651</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add new comment">
+      <created>1610198727837</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610198727837</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,21 +358,22 @@
     <MESSAGE value="Clock icon not final" />
     <MESSAGE value="Fix span" />
     <MESSAGE value="Add send new message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add send new message" />
+    <MESSAGE value="Add new comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new comment" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1610023066162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1610023066162" />
-    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610132064735">
+    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610210146154">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610132064735" />
-    <state x="585" y="87" key="CommitChangelistDialog2" timestamp="1610197021771">
+    <state x="690" y="273" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610210146154" />
+    <state x="585" y="87" key="CommitChangelistDialog2" timestamp="1610198726374">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="87" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610197021771" />
+    <state x="585" y="87" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610198726374" />
     <state x="92" y="92" width="1750" height="856" key="DiffContextDialog" timestamp="1610182296262">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -361,17 +386,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="442" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610102266572" />
-    <state x="730" y="221" key="RollbackChangesDialog" timestamp="1610188265684">
+    <state x="730" y="221" key="RollbackChangesDialog" timestamp="1610205670537">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="221" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610188265684" />
-    <state x="552" y="238" key="Vcs.Push.Dialog.v2" timestamp="1610197025237">
+    <state x="730" y="221" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610205670537" />
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2" timestamp="1610198731680">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610197025237" />
+    <state x="552" y="238" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610198731680" />
     <state x="666" y="253" width="587" height="534" key="find.popup" timestamp="1610182232460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="253" width="587" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610182232460" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1610210382657">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610210382657" />
   </component>
 </project>

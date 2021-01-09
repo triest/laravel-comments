@@ -1,8 +1,7 @@
 <template>
-  <div class="container">
+  <div>
     <div class="composer">
 
-      <br>
 
     </div>
     <div class="site-comment" v-for="item in comments">
@@ -35,17 +34,19 @@ export default {
   methods:
       {
         getComments() {
+          this.comments=[];
           axios.get('comment')
               .then((response) => {
                   this.comments=response.data.root;
-
               });
         },
         getChild(parent_id){
 
         },
         saveNewMessage(message) {
-          this.comments.push(message);
+          console.log("emited message")
+          //console.log(message[0]);
+          this.$emit('new', message);
         },
       }
 }

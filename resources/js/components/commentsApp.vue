@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <textarea   v-model="comment_text" placeholder="Введите сообщение!"></textarea>
+  <div  class="container">
+    <textarea   v-model="comment_text" placeholder="Введите сообщение!"></textarea><br>
     <button  @click="send">Отправить</button>
-    <comment :comments="comments" :childs="child"></comment>
+    <comment :comments="comments" :childs="child"  @new="getComments()"></comment>
   </div>
 </template>
 
@@ -30,6 +30,9 @@ export default {
       {
         getComments() {
           let temp = null;
+          console.log("getRootComment")
+          this.comments=[];
+          this.child=[]
           axios.get('api/comment')
               .then((response) => {
                 temp = response.data;

@@ -1920,7 +1920,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comments: {
@@ -1943,13 +1942,16 @@ __webpack_require__.r(__webpack_exports__);
     getComments: function getComments() {
       var _this = this;
 
+      this.comments = [];
       axios.get('comment').then(function (response) {
         _this.comments = response.data.root;
       });
     },
     getChild: function getChild(parent_id) {},
     saveNewMessage: function saveNewMessage(message) {
-      this.comments.push(message);
+      console.log("emited message"); //console.log(message[0]);
+
+      this.$emit('new', message);
     }
   }
 });
@@ -1965,6 +1967,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2027,11 +2033,55 @@ __webpack_require__.r(__webpack_exports__);
     return {
       first: true,
       childdsGett: [],
-      showAnswerFormVariable: false
+      showAnswerFormVariable: false,
+      likesNum: 0
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.calculate_likes();
+  },
   methods: {
+    calculate_likes: function calculate_likes() {
+      var accum = 0; //    console.log("likes")
+      //    console.log(this.comment.like);
+
+      for (var i = 0; i < this.comment.like.length; i++) {
+        console.log(this.comment.like[i]);
+        accum += this.comment.like[i].value;
+      }
+
+      this.likesNum = accum;
+    },
+    newLike: function newLike(comment_id) {
+      var that = this;
+      axios.post('api/comment/like', {
+        'comment_id': comment_id,
+        'action': 'like'
+      }).then(function (data) {
+        console.log(data.data.result);
+
+        if (data.data.result === true) {
+          that.likesNum = that.likesNum + 1;
+        }
+
+        console.log(that.likesNum);
+      })["catch"]();
+    },
+    dislike: function dislike(comment_id) {
+      var that = this;
+      axios.post('api/comment/like', {
+        'comment_id': comment_id,
+        'action': 'dislike'
+      }).then(function (data) {
+        console.log(data.data.result);
+
+        if (data.data.result === true) {
+          that.likesNum = that.likesNum - 1;
+        }
+
+        console.log(that.likesNum);
+      })["catch"]();
+    },
     checkChild: function checkChild(item) {
       for (var i = 0; i < this.childs.length; i++) {
         if (this.childs[i].parent_id == item.id) {
@@ -2051,7 +2101,11 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     showAnswerForm: function showAnswerForm(comment_id) {
-      this.showAnswerFormVariable = true;
+      if (!this.showAnswerFormVariable) {
+        this.showAnswerFormVariable = true;
+      } else {
+        this.showAnswerFormVariable = false;
+      }
     },
     answer: function answer(comment_id) {
       var that = this;
@@ -2059,23 +2113,18 @@ __webpack_require__.r(__webpack_exports__);
         'parent_id': comment_id,
         'text': this.comment_text
       }).then(function (data) {
-        that.childdsGett.push(data.data);
-        this.$emit('new', data, data);
+        var data2 = data.data;
+        that.childdsGett.push(data2[0]); //     that.childs.push(data2[0])
+        //that.$emit('new', data.data);
       })["catch"]();
     },
     time: function time(_time) {
-      console.log(_time);
       var date1 = new Date(_time);
       var date2 = new Date();
-      console.log(date1);
-      console.log(date2);
       var Time = date2.getTime() - date1.getTime();
       var Hours = Time / (1000 * 60 * 60);
       var Days = Time / (1000 * 3600 * 24);
       var Minuts = Time / 60;
-      console.log("minuts " + Minuts);
-      console.log("Hours " + Hours);
-      console.log("days " + Days);
 
       if (Days >= 1) {
         return Math.round(Days) + " дня назад";
@@ -2181,6 +2230,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var temp = null;
+      console.log("getRootComment");
+      this.comments = [];
+      this.child = [];
       axios.get('api/comment').then(function (response) {
         temp = response.data;
         _this.comments = temp.root;
@@ -6659,7 +6711,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n  background-color: black; /* Цвет фона веб-страницы */\n}\n.comments-new .body .body-top {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  background-color: #1e1f24;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n  background-color: black; /* Цвет фона веб-страницы */\n}\n.comments-new .body .body-top {\r\n  display: flex;\r\n  flex-direction: row;\r\n  padding: 10px;\r\n  background-color: #1e1f24;\n}\r\n", ""]);
 
 // exports
 
@@ -41167,9 +41219,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "composer" }),
       _vm._v(" "),
       _vm._l(_vm.comments, function(item) {
         return _c(
@@ -41192,14 +41243,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "composer" }, [_c("br")])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41275,6 +41319,34 @@ var render = function() {
                         }
                       },
                       [_vm._v("ответить")]
+                    ),
+                    _vm._v(
+                      "\n                 " +
+                        _vm._s(_vm.likesNum) +
+                        "\n                 "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.newLike(_vm.comment.id)
+                          }
+                        }
+                      },
+                      [_vm._v("like")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.dislike(_vm.comment.id)
+                          }
+                        }
+                      },
+                      [_vm._v("dislike")]
                     )
                   ])
                 ]
@@ -41454,6 +41526,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container" },
     [
       _c("textarea", {
         directives: [
@@ -41475,10 +41548,18 @@ var render = function() {
           }
         }
       }),
+      _c("br"),
       _vm._v(" "),
       _c("button", { on: { click: _vm.send } }, [_vm._v("Отправить")]),
       _vm._v(" "),
-      _c("comment", { attrs: { comments: _vm.comments, childs: _vm.child } })
+      _c("comment", {
+        attrs: { comments: _vm.comments, childs: _vm.child },
+        on: {
+          new: function($event) {
+            return _vm.getComments()
+          }
+        }
+      })
     ],
     1
   )

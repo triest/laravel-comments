@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Requests\RComment;
 use App\Http\Resources\CommentResourse;
 use App\Service\CommentService;
@@ -89,5 +90,22 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function like(Request $request){
+        $comment_id=$request->comment_id;
+
+
+        $comment=Comment::select(['*'])->where('id',$comment_id)->first();
+        if(!$comment){
+            return false;
+        }
+        if($request->action=="like") {
+           $rez=$comment->newLike('like');
+        }else{
+            $rez=$comment->newLike('dislike');
+        }
+
+        return response()->json(['result'=>$rez]);
     }
 }
