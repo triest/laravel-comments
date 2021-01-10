@@ -1923,6 +1923,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       required: false
     },
+    user: {
+      type: Number,
+      required: false
+    },
     childs: {
       type: Array,
       required: false
@@ -1938,8 +1942,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getChild: function getChild(parent_id) {},
     saveNewMessage: function saveNewMessage(message) {
-      console.log("emited message"); //console.log(message[0]);
-
       this.$emit('new', message);
     }
   }
@@ -2003,6 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -2016,6 +2020,10 @@ __webpack_require__.r(__webpack_exports__);
     childs: {
       type: Array,
       required: false
+    },
+    user: {
+      type: Number,
+      required: false
     }
   },
   data: function data() {
@@ -2028,14 +2036,41 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.calculate_likes();
+    console.log("like mount");
+    console.log(this.user);
   },
   methods: {
+    checkLike: function checkLike() {
+      if (typeof this.user == "undefined") {
+        return "dimgray";
+      }
+
+      for (var i = 0; i < this.comment.like.length; i++) {
+        if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === 1) {
+          return "green";
+        }
+      }
+
+      return "dimgray";
+    },
+    checkDislike: function checkDislike() {
+      if (typeof this.user == "undefined") {
+        return "dimgray";
+      }
+
+      for (var i = 0; i < this.comment.like.length; i++) {
+        if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === -1) {
+          return "red";
+        }
+      }
+
+      return "dimgray";
+    },
     calculate_likes: function calculate_likes() {
       var accum = 0; //    console.log("likes")
       //    console.log(this.comment.like);
 
       for (var i = 0; i < this.comment.like.length; i++) {
-        console.log(this.comment.like[i]);
         accum += this.comment.like[i].value;
       }
 
@@ -2047,13 +2082,9 @@ __webpack_require__.r(__webpack_exports__);
         'comment_id': comment_id,
         'action': 'like'
       }).then(function (data) {
-        console.log(data.data.result);
-
         if (data.data.result === true) {
           that.likesNum = that.likesNum + 1;
         }
-
-        console.log(that.likesNum);
       })["catch"]();
     },
     dislike: function dislike(comment_id) {
@@ -2062,13 +2093,9 @@ __webpack_require__.r(__webpack_exports__);
         'comment_id': comment_id,
         'action': 'dislike'
       }).then(function (data) {
-        console.log(data.data.result);
-
         if (data.data.result === true) {
           that.likesNum = that.likesNum - 1;
         }
-
-        console.log(that.likesNum);
       })["catch"]();
     },
     checkChild: function checkChild(item) {
@@ -2103,8 +2130,13 @@ __webpack_require__.r(__webpack_exports__);
         'text': this.comment_text
       }).then(function (data) {
         var data2 = data.data;
+        that.showAnswerFormVariable = false;
         that.childdsGett.push(data2[0]);
-      })["catch"]();
+        that.comment_text = "";
+      })["catch"](function () {
+        alert("Ошибка! Повторите позже или обратитесь к администратору");
+        that.showAnswerFormVariable = false;
+      });
     },
     time: function time(_time) {
       var date1 = new Date(_time);
@@ -2168,9 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2205,19 +2235,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     }
   },
   mounted: function mounted() {
     this.getComments();
+    console.log("user in comments app");
   },
   methods: {
     getComments: function getComments() {
       var _this = this;
 
       var temp = null;
-      console.log("getRootComment");
       this.comments = [];
       this.child = [];
       axios.get('api/comment', {
@@ -2236,7 +2266,11 @@ __webpack_require__.r(__webpack_exports__);
         'text': this.comment_text
       }).then(function (data) {
         that.comments.push(data.data[0]);
-      })["catch"]();
+        that.comment_text = "";
+      })["catch"](function () {
+        alert("Ошибка! Повторите позже или обратитесь к администратору");
+        that.showAnswerFormVariable = false;
+      });
     },
     changeOrder: function changeOrder(order) {
       this.order = order;
@@ -6687,7 +6721,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".comment-rating[data-v-c63b9012] {\n  color: dimgray;\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}", ""]);
+exports.push([module.i, ".comment-rating[data-v-c63b9012] {\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n  word-wrap: break-word;\n  width: 400px;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}\n.css-clock .rating[data-v-c63b9012] {\n  display: inline-block;\n  width: 100%;\n  margin-top: 40px;\n  padding-top: 40px;\n  text-align: center;\n}\n.css-clock .like[data-v-c63b9012],\n.css-clock .dislike[data-v-c63b9012] {\n  display: inline-block;\n  cursor: pointer;\n  margin: 10px;\n}\n.css-clock .dislike[data-v-c63b9012]:hover,\n.css-clock .like[data-v-c63b9012]:hover {\n  color: #2EBDD1;\n  transition: all 0.2s ease-in-out;\n  transform: scale(1.1);\n  cursor: pointer;\n}\n.css-clock .like[data-v-c63b9012] {\n  cursor: pointer;\n}\n.css-clock .active[data-v-c63b9012] {\n  color: #2EBDD1;\n}", ""]);
 
 // exports
 
@@ -6706,7 +6740,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\r\n  background-color: black; /* Цвет фона веб-страницы */\n}\n.comments-new .body .body-top {\r\n  display: flex;\r\n  flex-direction: row;\r\n  padding: 10px;\r\n  background-color: #1e1f24;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n  background-color: black; /* Цвет фона веб-страницы */\n}\n.comments-new .body .body-top {\r\n  display: flex;\r\n  flex-direction: row;\r\n  padding: 10px;\r\n  background-color: #1e1f24;\n}\n.site-comment {\r\n  max-width: 400px;\n}\r\n", ""]);
 
 // exports
 
@@ -38592,7 +38626,8 @@ var render = function() {
             attrs: {
               comment: item,
               comments: _vm.comments,
-              childs: _vm.childs
+              childs: _vm.childs,
+              user: _vm.user
             },
             on: { new: _vm.saveNewMessage }
           })
@@ -38638,7 +38673,14 @@ var render = function() {
         _c("div", { staticClass: "header" }, [
           _c("div", { staticClass: "right-block" }, [
             _c("div", { staticClass: "control" }, [
-              _vm._m(0),
+              _c("a", {
+                attrs: {
+                  href: "javascript://",
+                  "data-reply-rating": "minus",
+                  "data-reply-rating-id": "1211953",
+                  title: "Оценить комментарий"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "span",
@@ -38662,7 +38704,7 @@ var render = function() {
                         _vm._s() +
                         "\n                 "
                     ),
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(
                       " " +
                         _vm._s(_vm.time(_vm.comment.created_at)) +
@@ -38683,36 +38725,50 @@ var render = function() {
                     _vm._v(
                       "\n                 " +
                         _vm._s(_vm.likesNum) +
-                        "\n                 "
+                        "\n                  "
                     ),
                     _c(
-                      "button",
+                      "span",
                       {
+                        staticClass: "like grow",
                         on: {
                           click: function($event) {
                             return _vm.newLike(_vm.comment.id)
                           }
                         }
                       },
-                      [_vm._v("like")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-thumbs-up fa-1x like",
+                          staticStyle: { cursor: "pointer" },
+                          style: { color: _vm.checkLike() },
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "span",
                       {
+                        staticClass: "dislike grow",
                         on: {
                           click: function($event) {
                             return _vm.dislike(_vm.comment.id)
                           }
                         }
                       },
-                      [_vm._v("dislike")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-thumbs-down fa-1x like",
+                          staticStyle: { cursor: "pointer" },
+                          style: { color: _vm.checkDislike() },
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     )
                   ])
                 ]
-              ),
-              _vm._v(" "),
-              _vm._m(2)
+              )
             ])
           ])
         ])
@@ -38781,41 +38837,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        attrs: {
-          href: "javascript://",
-          "data-reply-rating": "minus",
-          "data-reply-rating-id": "1211953",
-          title: "Оценить комментарий"
-        }
-      },
-      [_c("i", { staticClass: "fa fa-minus" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("span", [_c("i", { staticClass: "css-clock" })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        attrs: {
-          href: "javascript://",
-          "data-reply-rating": "plus",
-          "data-reply-rating-id": "1211953",
-          title: "Оценить комментарий"
-        }
-      },
-      [_c("i", { staticClass: "fa fa-plus" })]
-    )
   }
 ]
 render._withStripped = true
@@ -38955,7 +38977,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("comment", {
-        attrs: { comments: _vm.comments, childs: _vm.child },
+        attrs: { comments: _vm.comments, childs: _vm.child, user: _vm.user },
         on: {
           new: function($event) {
             return _vm.getComments()

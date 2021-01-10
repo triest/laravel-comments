@@ -5,7 +5,7 @@
         <div class="right-block">
           <div class="control">
             <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
-               title="Оценить комментарий"><i class="fa fa-minus"></i></a>
+               title="Оценить комментарий"></a>
             <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
@@ -16,14 +16,16 @@
 
                     <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                  {{ likesNum }}
-                 <button
-                     v-on:click="newLike(comment.id)">like</button>
-                   <button v-on:click="dislike(comment.id)">dislike</button>
+                  <span class="like grow" v-on:click="newLike(comment.id)" >
+                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:checkLike()}"></i>
+                  </span>
+                   <span class="dislike grow" v-on:click="dislike(comment.id)" >
+                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:checkDislike()}"></i>
+                  </span>
                </span>
 
             </span>
-            <a href="javascript://" data-reply-rating="plus" data-reply-rating-id="1211953"
-               title="Оценить комментарий"><i class="fa fa-plus"></i></a>
+
           </div>
         </div>
       </div>
@@ -60,6 +62,10 @@ export default {
       type: Array,
       required: false
     },
+    user: {
+      type: Number,
+      required: false
+    },
   },
   data() {
     return {
@@ -71,16 +77,41 @@ export default {
   },
   mounted() {
     this.calculate_likes();
+    console.log("like mount");
+    console.log(this.user);
   },
 
   methods:
       {
+        checkLike(){
+          if(typeof this.user=="undefined"){
+            return "dimgray"
+          }
+          for (let i = 0; i < this.comment.like.length; i++) {
+            if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===1){
+               return "green";
+            }
+          }
+          return "dimgray"
+        },
+        checkDislike(){
+          if(typeof this.user=="undefined"){
+            return "dimgray"
+          }
+
+          for (let i = 0; i < this.comment.like.length; i++) {
+            if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===-1){
+              return "red";
+            }
+
+          }
+          return "dimgray"
+        },
         calculate_likes() {
           let accum = 0;
           //    console.log("likes")
           //    console.log(this.comment.like);
           for (let i = 0; i < this.comment.like.length; i++) {
-            console.log(this.comment.like[i])
             accum += this.comment.like[i].value
           }
           this.likesNum = accum;
@@ -89,21 +120,17 @@ export default {
         newLike(comment_id) {
           let that = this;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
-            console.log(data.data.result)
             if (data.data.result === true) {
               that.likesNum = that.likesNum + 1;
             }
-            console.log(that.likesNum);
           }).catch()
         },
         dislike(comment_id) {
           let that = this;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
-            console.log(data.data.result)
             if (data.data.result === true) {
               that.likesNum = that.likesNum - 1;
             }
-            console.log(that.likesNum);
           }).catch()
         },
         checkChild(item) {
@@ -133,9 +160,13 @@ export default {
           let that = this;
           axios.post('api/comment', {'parent_id': comment_id, 'text': this.comment_text}).then(function (data) {
             let data2 = data.data;
-
-            that.childdsGett.push(data2[0])
-          }).catch()
+            that.showAnswerFormVariable = false;
+            that.childdsGett.push(data2[0]);
+            that.comment_text = "";
+          }).catch(function () {
+            alert("Ошибка! Повторите позже или обратитесь к администратору")
+            that.showAnswerFormVariable = false;
+          })
         },
         time(time) {
 
@@ -179,13 +210,15 @@ Vue.filter('moment-ago', function (date) {
 
 <style lang="scss" scoped>
 .comment-rating {
-  color: dimgray;
+
   font-family: Roboto;
 }
 
 .text {
   color: grey;
   font-family: Roboto;
+  word-wrap: break-word;
+  width: 400px;
 }
 
 .avatar {
@@ -261,6 +294,36 @@ Vue.filter('moment-ago', function (date) {
     opacity: 0.6;
   }
 
+  .rating {
+    display: inline-block;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 40px;
+    text-align: center;
+  }
+
+  .like,
+  .dislike {
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  .dislike:hover,
+  .like:hover {
+    color: #2EBDD1;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  .like {
+    cursor: pointer;
+  }
+
+  .active {
+    color: #2EBDD1;
+  }
 
 }
 </style>

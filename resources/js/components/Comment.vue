@@ -2,7 +2,7 @@
   <div class="container">
 
     <div class="site-comment" v-for="item in comments">
-        <comment-item :comment="item" :comments="comments" :childs="childs" @new="saveNewMessage"></comment-item>
+      <comment-item :comment="item" :comments="comments" :childs="childs" :user="user" @new="saveNewMessage"></comment-item>
     </div>
   </div>
 </template>
@@ -14,15 +14,19 @@ export default {
       type: Array,
       required: false
     },
+    user: {
+      type: Number,
+      required: false
+    },
     childs: {
       type: Array,
       required: false
     }
   },
-  data(){
+  data() {
     return {
       first: true,
-      message:""
+      message: ""
     }
   },
   mounted() {
@@ -30,12 +34,10 @@ export default {
   },
   methods:
       {
-        getChild(parent_id){
+        getChild(parent_id) {
 
         },
         saveNewMessage(message) {
-          console.log("emited message")
-          //console.log(message[0]);
           this.$emit('new', message);
         },
       }
@@ -51,5 +53,9 @@ body {
   flex-direction: row;
   padding: 10px;
   background-color: #1e1f24;
+}
+
+.site-comment {
+  max-width: 400px;
 }
 </style>

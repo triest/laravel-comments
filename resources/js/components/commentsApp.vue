@@ -5,7 +5,7 @@
     <span class="sort-span" v-on:click="changeOrder('popular')">Популярные</span>
     <span class="sort-span" v-on:click="changeOrder('new')">Новые</span>
     <span class="sort-span" v-on:click="changeOrder('old')">Старые</span>
-    <comment :comments="comments" :childs="child" @new="getComments()"></comment>
+    <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
   </div>
 </template>
 
@@ -21,19 +21,19 @@ export default {
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
 
   },
   mounted() {
     this.getComments()
+    console.log("user in comments app");
   },
   methods:
       {
         getComments() {
           let temp = null;
-          console.log("getRootComment")
           this.comments = [];
           this.child = []
           axios.get('api/comment', {params: {order: this.order}})
@@ -48,7 +48,11 @@ export default {
           let that = this;
           axios.post('api/comment', {'text': this.comment_text}).then(function (data) {
             that.comments.push(data.data[0])
-          }).catch()
+            that.comment_text="";
+          }).catch(function (){
+            alert("Ошибка! Повторите позже или обратитесь к администратору")
+            that.showAnswerFormVariable=false;
+          })
         },
         changeOrder(order) {
           this.order = order;

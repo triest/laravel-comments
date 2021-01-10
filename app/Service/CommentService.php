@@ -55,11 +55,7 @@ class CommentService
         $user = Auth::user();
 
         if ($user == null) {
-            $user = User::select('*')->first();
-            if ($user == null) {
                 return;
-            }
-         //   Auth::login($user);
         }
 
         $comment = new Comment();

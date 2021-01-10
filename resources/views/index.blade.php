@@ -1,7 +1,7 @@
-@extends('layouts.app',['title'=>'Коментарии'])
+@extends('layouts.comments',['title'=>'Коментарии'])
 
 @section('content')
-
-    <comment-app ></comment-app>
-
+    <div class="col md-4">
+        <comment-app :user="{{Auth::user()->id}}"></comment-app>
+    </div>
 @endsection
