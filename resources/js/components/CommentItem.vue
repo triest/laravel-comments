@@ -17,10 +17,10 @@
                     <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                  {{ likesNum }}
                   <span class="like grow" v-on:click="newLike(comment.id)" >
-                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:checkLike()}"></i>
+                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:colorLike}"></i>
                   </span>
                    <span class="dislike grow" v-on:click="dislike(comment.id)" >
-                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:checkDislike()}"></i>
+                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:colorDislike}"></i>
                   </span>
                </span>
 
@@ -72,45 +72,49 @@ export default {
       first: true,
       childdsGett: [],
       showAnswerFormVariable: false,
-      likesNum: 0
+      likesNum: 0,
+      colorLike: "dimgray",
+      colorDislike: "dimgray"
     }
   },
   mounted() {
     this.calculate_likes();
-    console.log("like mount");
-    console.log(this.user);
+    this.checkLike();
+    this.checkDislike();
   },
 
   methods:
       {
         checkLike(){
           if(typeof this.user=="undefined"){
-            return "dimgray"
+            this.colorLike= "dimgray";
+            return ;
           }
           for (let i = 0; i < this.comment.like.length; i++) {
             if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===1){
-               return "green";
+               this.colorLike="green";
+              return ;
             }
           }
-          return "dimgray"
+          this.colorLike= "dimgray"
         },
         checkDislike(){
           if(typeof this.user=="undefined"){
-            return "dimgray"
+            this.colorDislike= "dimgray"
+            return ;
           }
 
           for (let i = 0; i < this.comment.like.length; i++) {
             if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===-1){
-              return "red";
+              this.colorDislike= "red";
+              return ;
             }
 
           }
-          return "dimgray"
+          this.colorDislike= "dimgray"
         },
         calculate_likes() {
           let accum = 0;
-          //    console.log("likes")
-          //    console.log(this.comment.like);
           for (let i = 0; i < this.comment.like.length; i++) {
             accum += this.comment.like[i].value
           }
@@ -119,18 +123,35 @@ export default {
 
         newLike(comment_id) {
           let that = this;
+          let temp=null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
-            if (data.data.result === true) {
-              that.likesNum = that.likesNum + 1;
+            temp=data.data.result.value;
+            that.colorDislike="dimgray";
+            if(temp===0){
+              that.colorLike= "dimgray";
+            } else if(temp===1){
+              that.colorLike= "green";
+            }else if(temp===-1){
+              that.colorLike= "red";
             }
+            that.likesNum+=1;
+
           }).catch()
         },
         dislike(comment_id) {
           let that = this;
+          let temp=null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
-            if (data.data.result === true) {
-              that.likesNum = that.likesNum - 1;
+            temp=data.data.result.value;
+            that.colorLike="dimgray";
+            if(temp===0){
+              that.colorDislike= "dimgray";
+            } else if(temp===1){
+              that.colorDislike= "green";
+            }else if(temp===-1){
+              that.colorDislike= "red";
             }
+            that.likesNum-=1;
           }).catch()
         },
         checkChild(item) {

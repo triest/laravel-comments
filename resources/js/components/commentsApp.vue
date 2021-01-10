@@ -28,7 +28,6 @@ export default {
   },
   mounted() {
     this.getComments()
-    console.log("user in comments app");
   },
   methods:
       {

@@ -45,8 +45,6 @@ class CommentController extends Controller
      */
     public function store(RComment $request)
     {
-
-
         $commentService = new CommentService();
         $comment = $commentService->create($request->text, $request->parent_id);
 
@@ -101,6 +99,12 @@ class CommentController extends Controller
 
     public function like(Request $request)
     {
+        $user = Auth::user();
+
+        if ($user == null) {
+            return false;
+        }
+
         $comment_id = $request->comment_id;
 
 

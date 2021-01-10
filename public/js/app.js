@@ -2031,44 +2031,49 @@ __webpack_require__.r(__webpack_exports__);
       first: true,
       childdsGett: [],
       showAnswerFormVariable: false,
-      likesNum: 0
+      likesNum: 0,
+      colorLike: "dimgray",
+      colorDislike: "dimgray"
     };
   },
   mounted: function mounted() {
     this.calculate_likes();
-    console.log("like mount");
-    console.log(this.user);
+    this.checkLike();
+    this.checkDislike();
   },
   methods: {
     checkLike: function checkLike() {
       if (typeof this.user == "undefined") {
-        return "dimgray";
+        this.colorLike = "dimgray";
+        return;
       }
 
       for (var i = 0; i < this.comment.like.length; i++) {
         if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === 1) {
-          return "green";
+          this.colorLike = "green";
+          return;
         }
       }
 
-      return "dimgray";
+      this.colorLike = "dimgray";
     },
     checkDislike: function checkDislike() {
       if (typeof this.user == "undefined") {
-        return "dimgray";
+        this.colorDislike = "dimgray";
+        return;
       }
 
       for (var i = 0; i < this.comment.like.length; i++) {
         if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === -1) {
-          return "red";
+          this.colorDislike = "red";
+          return;
         }
       }
 
-      return "dimgray";
+      this.colorDislike = "dimgray";
     },
     calculate_likes: function calculate_likes() {
-      var accum = 0; //    console.log("likes")
-      //    console.log(this.comment.like);
+      var accum = 0;
 
       for (var i = 0; i < this.comment.like.length; i++) {
         accum += this.comment.like[i].value;
@@ -2078,24 +2083,44 @@ __webpack_require__.r(__webpack_exports__);
     },
     newLike: function newLike(comment_id) {
       var that = this;
+      var temp = null;
       axios.post('api/comment/like', {
         'comment_id': comment_id,
         'action': 'like'
       }).then(function (data) {
-        if (data.data.result === true) {
-          that.likesNum = that.likesNum + 1;
+        temp = data.data.result.value;
+        that.colorDislike = "dimgray";
+
+        if (temp === 0) {
+          that.colorLike = "dimgray";
+        } else if (temp === 1) {
+          that.colorLike = "green";
+        } else if (temp === -1) {
+          that.colorLike = "red";
         }
+
+        that.likesNum += 1;
       })["catch"]();
     },
     dislike: function dislike(comment_id) {
       var that = this;
+      var temp = null;
       axios.post('api/comment/like', {
         'comment_id': comment_id,
         'action': 'dislike'
       }).then(function (data) {
-        if (data.data.result === true) {
-          that.likesNum = that.likesNum - 1;
+        temp = data.data.result.value;
+        that.colorLike = "dimgray";
+
+        if (temp === 0) {
+          that.colorDislike = "dimgray";
+        } else if (temp === 1) {
+          that.colorDislike = "green";
+        } else if (temp === -1) {
+          that.colorDislike = "red";
         }
+
+        that.likesNum -= 1;
       })["catch"]();
     },
     checkChild: function checkChild(item) {
@@ -2241,7 +2266,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getComments();
-    console.log("user in comments app");
   },
   methods: {
     getComments: function getComments() {
@@ -38741,7 +38765,7 @@ var render = function() {
                         _c("i", {
                           staticClass: "fa fa-thumbs-up fa-1x like",
                           staticStyle: { cursor: "pointer" },
-                          style: { color: _vm.checkLike() },
+                          style: { color: _vm.colorLike },
                           attrs: { "aria-hidden": "true" }
                         })
                       ]
@@ -38761,7 +38785,7 @@ var render = function() {
                         _c("i", {
                           staticClass: "fa fa-thumbs-down fa-1x like",
                           staticStyle: { cursor: "pointer" },
-                          style: { color: _vm.checkDislike() },
+                          style: { color: _vm.colorDislike },
                           attrs: { "aria-hidden": "true" }
                         })
                       ]

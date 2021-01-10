@@ -58,6 +58,6 @@ class Comment extends Model
         }
         $this->save();
         $like->save();
-        return true;
+        return $like;
     }
 }
