@@ -2007,6 +2007,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -6744,7 +6748,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fa-thumbs-up[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n}\n.fa-thumbs-down[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n}\n.comment-rating[data-v-c63b9012] {\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n  word-wrap: break-word;\n  width: 400px;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}\n.css-clock .rating[data-v-c63b9012] {\n  display: inline-block;\n  width: 100%;\n  margin-top: 40px;\n  padding-top: 40px;\n  text-align: center;\n}\n.css-clock .like[data-v-c63b9012],\n.css-clock .dislike[data-v-c63b9012] {\n  display: inline-block;\n  cursor: pointer;\n  margin: 10px;\n  border-color: white;\n  border: 1px;\n}\n.css-clock .dislike[data-v-c63b9012]:hover,\n.css-clock .like[data-v-c63b9012]:hover {\n  color: #2EBDD1;\n  transition: all 0.2s ease-in-out;\n  transform: scale(1.1);\n  cursor: pointer;\n}\n.css-clock .like[data-v-c63b9012] {\n  cursor: pointer;\n}\n.css-clock .active[data-v-c63b9012] {\n  color: #2EBDD1;\n}", ""]);
+exports.push([module.i, ".fa-thumbs-up[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n  float: right;\n}\n.like-span[data-v-c63b9012] {\n  position: absolute;\n  margin-left: 400px;\n  display: block;\n}\n.like[data-v-c63b9012] {\n  float: right;\n}\n.avatar.like[data-v-c63b9012] {\n  float: right;\n}\n.avatar.dislike[data-v-c63b9012] {\n  float: right;\n}\n.fa-thumbs-down[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n  float: right;\n}\n.comment-rating[data-v-c63b9012] {\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n  word-wrap: break-word;\n  width: 400px;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n  width: 400px;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}\n.css-clock .rating[data-v-c63b9012] {\n  display: inline-block;\n  width: 100%;\n  margin-top: 40px;\n  padding-top: 40px;\n  text-align: center;\n}\n.css-clock .like[data-v-c63b9012],\n.css-clock .dislike[data-v-c63b9012] {\n  display: inline-block;\n  cursor: pointer;\n  margin: 10px;\n  border-color: white;\n  border: 1px;\n}\n.css-clock .dislike[data-v-c63b9012]:hover,\n.css-clock .like[data-v-c63b9012]:hover {\n  color: #2EBDD1;\n  transition: all 0.2s ease-in-out;\n  transform: scale(1.1);\n  cursor: pointer;\n}\n.css-clock .like[data-v-c63b9012] {\n  cursor: pointer;\n}\n.css-clock .active[data-v-c63b9012] {\n  color: #2EBDD1;\n}", ""]);
 
 // exports
 
@@ -38723,15 +38727,13 @@ var render = function() {
                       }
                     }),
                     _vm._v(
-                      "\n                     " +
-                        _vm._s() +
-                        "\n                 "
+                      "\n                   " + _vm._s() + "\n               "
                     ),
                     _vm._m(0),
                     _vm._v(
                       " " +
                         _vm._s(_vm.time(_vm.comment.created_at)) +
-                        "\n\n                    "
+                        "\n\n               "
                     ),
                     _c(
                       "span",
@@ -38745,50 +38747,65 @@ var render = function() {
                       },
                       [_vm._v("ответить")]
                     ),
-                    _vm._v(
-                      "\n                 " +
-                        _vm._s(_vm.likesNum) +
-                        "\n                  "
-                    ),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "like grow",
-                        on: {
-                          click: function($event) {
-                            return _vm.newLike(_vm.comment.id)
-                          }
-                        }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-thumbs-up fa-1x like",
-                          staticStyle: { cursor: "pointer" },
-                          style: { "-webkit-text-stroke-color": _vm.colorLike },
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ]
-                    ),
                     _vm._v(" "),
                     _c(
                       "span",
                       {
-                        staticClass: "dislike grow",
-                        on: {
-                          click: function($event) {
-                            return _vm.dislike(_vm.comment.id)
-                          }
-                        }
+                        staticClass: "like-span",
+                        staticStyle: { "text-align": "right" }
                       },
                       [
-                        _c("i", {
-                          staticClass: "fa fa-thumbs-down fa-1x like",
-                          staticStyle: { cursor: "pointer" },
-                          style: {
-                            "-webkit-text-stroke-color": _vm.colorDislike
+                        _vm._v(
+                          "\n               " +
+                            _vm._s(_vm.likesNum) +
+                            "\n                "
+                        ),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "like grow",
+                            on: {
+                              click: function($event) {
+                                return _vm.newLike(_vm.comment.id)
+                              }
+                            }
                           },
-                          attrs: { "aria-hidden": "true" }
-                        })
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-thumbs-up fa-1x like",
+                              staticStyle: {
+                                cursor: "pointer",
+                                float: "right"
+                              },
+                              style: {
+                                "-webkit-text-stroke-color": _vm.colorLike
+                              },
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "dislike grow",
+                            on: {
+                              click: function($event) {
+                                return _vm.dislike(_vm.comment.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-thumbs-down fa-1x like",
+                              staticStyle: { cursor: "pointer" },
+                              style: {
+                                "-webkit-text-stroke-color": _vm.colorDislike
+                              },
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
                       ]
                     )
                   ])
@@ -38800,7 +38817,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "text" }, [
-        _vm._v("\n      " + _vm._s(_vm.comment.text) + "\n    ")
+        _vm._v("\n    " + _vm._s(_vm.comment.text) + "\n  ")
       ]),
       _vm._v(" "),
       _vm.showAnswerFormVariable === true

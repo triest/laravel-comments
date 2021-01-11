@@ -12,16 +12,20 @@
                      {{  }}
                  <span>
                             <i class="css-clock"></i>
-</span> {{ time(comment.created_at) }}
+                </span> {{ time(comment.created_at) }}
 
-                    <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+                 <span class="like-span" style="text-align: right">
                  {{ likesNum }}
-                  <span class="like grow" v-on:click="newLike(comment.id)" >
-                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{'-webkit-text-stroke-color':colorLike}"></i>
+                  <span class="like grow" v-on:click="newLike(comment.id)">
+                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;float: right"
+                           v-bind:style="{'-webkit-text-stroke-color':colorLike}"></i>
                   </span>
-                   <span class="dislike grow" v-on:click="dislike(comment.id)" >
-                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
+                   <span class="dislike grow" v-on:click="dislike(comment.id)">
+                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer"
+                           v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
+                 </span>
                </span>
 
             </span>
@@ -85,33 +89,33 @@ export default {
 
   methods:
       {
-        checkLike(){
-          if(typeof this.user=="undefined"){
-            this.colorLike= "dimgray";
-            return ;
+        checkLike() {
+          if (typeof this.user == "undefined") {
+            this.colorLike = "dimgray";
+            return;
           }
           for (let i = 0; i < this.comment.like.length; i++) {
-            if(this.comment.like[i].user_id===this.user.id && this.comment.like[i].value===1){
-               this.colorLike="green";
-              return ;
+            if (this.comment.like[i].user_id === this.user.id && this.comment.like[i].value === 1) {
+              this.colorLike = "green";
+              return;
             }
           }
-          this.colorLike= "dimgray"
+          this.colorLike = "dimgray"
         },
-        checkDislike(){
-          if(typeof this.user=="undefined"){
-            this.colorDislike= "dimgray"
-            return ;
+        checkDislike() {
+          if (typeof this.user == "undefined") {
+            this.colorDislike = "dimgray"
+            return;
           }
 
           for (let i = 0; i < this.comment.like.length; i++) {
-            if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===-1){
-              this.colorDislike= "red";
-              return ;
+            if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === -1) {
+              this.colorDislike = "red";
+              return;
             }
 
           }
-          this.colorDislike= "dimgray"
+          this.colorDislike = "dimgray"
         },
         calculate_likes() {
           let accum = 0;
@@ -123,35 +127,35 @@ export default {
 
         newLike(comment_id) {
           let that = this;
-          let temp=null;
+          let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
-            temp=data.data.result.value;
-            that.colorDislike="dimgray";
-            if(temp===0){
-              that.colorLike= "dimgray";
-            } else if(temp===1){
-              that.colorLike= "green";
-            }else if(temp===-1){
-              that.colorLike= "red";
+            temp = data.data.result.value;
+            that.colorDislike = "dimgray";
+            if (temp === 0) {
+              that.colorLike = "dimgray";
+            } else if (temp === 1) {
+              that.colorLike = "green";
+            } else if (temp === -1) {
+              that.colorLike = "red";
             }
-            that.likesNum+=1;
+            that.likesNum += 1;
 
           }).catch()
         },
         dislike(comment_id) {
           let that = this;
-          let temp=null;
+          let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
-            temp=data.data.result.value;
-            that.colorLike="dimgray";
-            if(temp===0){
-              that.colorDislike= "dimgray";
-            } else if(temp===1){
-              that.colorDislike= "green";
-            }else if(temp===-1){
-              that.colorDislike= "red";
+            temp = data.data.result.value;
+            that.colorLike = "dimgray";
+            if (temp === 0) {
+              that.colorDislike = "dimgray";
+            } else if (temp === 1) {
+              that.colorDislike = "green";
+            } else if (temp === -1) {
+              that.colorDislike = "red";
             }
-            that.likesNum-=1;
+            that.likesNum -= 1;
           }).catch()
         },
         checkChild(item) {
@@ -228,16 +232,36 @@ export default {
 
 <style lang="scss" scoped>
 
-.fa-thumbs-up{
+.fa-thumbs-up {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
+  float: right;
 }
 
-.fa-thumbs-down{
+.like-span {
+  position: absolute;
+  margin-left:400px;
+  display: block;
+}
+
+.like {
+  float: right;
+}
+
+.avatar.like {
+  float: right;
+}
+
+.avatar.dislike {
+  float: right;
+}
+
+.fa-thumbs-down {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
+  float: right;
 }
 
 .comment-rating {
@@ -271,6 +295,7 @@ export default {
 .avatar {
   flex: 1;
   display: flex;
+  width: 400px;
 
   img {
     width: 30px;
