@@ -123,4 +123,8 @@ export default {
   margin-left: 30px;
   color: #9f9fa1;
 }
+
+.container{
+  font-family: Roboto,serif;
+}
 </style>
