@@ -1,12 +1,12 @@
 <template>
   <div class="body" v-bind:style="[comment.parent_id!=null  ? {pagination:15} : {pagination:0}]">
-    <div class="body-top">
-      <div class="header">
-        <div class="right-block">
-          <div class="control">
-            <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
-               title="Оценить комментарий"></a>
-            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
+      <div class="body-top">
+        <div class="header">
+          <div class="right-block">
+            <div class="control">
+              <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
+                 title="Оценить комментарий"></a>
+              <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{  }}
@@ -30,20 +30,20 @@
 
             </span>
 
+            </div>
           </div>
         </div>
+
       </div>
 
-    </div>
-
-    <div class="text">
-      {{ comment.text }}
-    </div>
-    <div v-if="showAnswerFormVariable===true">
+      <div class="text">
+        {{ comment.text }}
+      </div>
+      <div v-if="showAnswerFormVariable===true">
       <textarea id="answer" :name="'comment'+comment.id" ref="'comment'+comment.id"
                 v-model="comment_text"></textarea><br>
-      <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
-    </div>
+        <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
+      </div>
 
       <comment :comments="childdsGett" :childs="childs"></comment>
 
@@ -233,6 +233,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v1 {
+  border-left: 1px solid red;
+}
+
+li::before{
+  border-left: 1px solid red;
+}
+
+.li{
+  border-left: 1px solid white;
+}
 
 .fa-thumbs-up {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
@@ -243,12 +254,16 @@ export default {
 
 .like-span {
   position: absolute;
-  margin-left:400px;
+  margin-left: 400px;
   display: block;
 }
 
 .like {
   float: right;
+}
+
+.avatar{
+  color: #949497;
 }
 
 .avatar.like {
@@ -272,7 +287,7 @@ export default {
 }
 
 .text {
-  color: grey;
+  color: #7f7f82;
   font-family: Roboto;
   word-wrap: break-word;
   width: 400px;

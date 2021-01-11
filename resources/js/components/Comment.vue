@@ -30,8 +30,8 @@ export default {
     }
   },
   mounted() {
-     console.log("childs in comment")
-      console.log(this.childs)
+    console.log("childs in comment")
+    console.log(this.childs)
   },
   methods:
       {
@@ -46,7 +46,7 @@ export default {
 </script>
 <style>
 body {
-  background-color: black; /* Цвет фона веб-страницы */
+  background-color: #101013; /* Цвет фона веб-страницы */
 }
 
 .comments-new .body .body-top {
