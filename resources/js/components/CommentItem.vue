@@ -133,7 +133,7 @@ export default {
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
             temp = data.data.result;
             if(temp===false){
-              that.colorDislike = "green";
+           //   that.colorDislike = "green";
               return ;
             }
             that.colorDislike = "dimgray";

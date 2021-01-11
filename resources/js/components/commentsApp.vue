@@ -1,16 +1,24 @@
 <template>
   <div class="container">
-    <textarea v-model="comment_text" placeholder="Введите сообщение!"></textarea><br><br>
+    <textarea class="main-textarea" v-model="comment_text" placeholder="Введите сообщение!"></textarea><br><br>
     <button @click="send">Отправить</button>
     <br>
     <span class="comment-label">
     Комментарии
     </span>
-    <button class="sort-span" v-on:click="changeOrder('popular')" v-bind:style="{ 'background-color': order==='popular' ? '#19191e' : '#101013' ,'color': order==='popular' ?  '#9f9fa1':'#65656e'  }" >Популярные</button>
-    <button class="sort-span" v-on:click="changeOrder('new')" v-bind:style="{ 'background-color': order==='new' ? '#19191e' : '#101013' ,'color': order==='new' ?  '#9f9fa1':'#65656e'  }">Новые</button>
-    <button class="sort-span" v-on:click="changeOrder('old')" v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">Старые</button>
+    <button class="sort-span" v-on:click="changeOrder('popular')"
+            v-bind:style="{ 'background-color': order==='popular' ? '#19191e' : '#101013' ,'color': order==='popular' ?  '#9f9fa1':'#65656e'  }">
+      Популярные
+    </button>
+    <button class="sort-span" v-on:click="changeOrder('new')"
+            v-bind:style="{ 'background-color': order==='new' ? '#19191e' : '#101013' ,'color': order==='new' ?  '#9f9fa1':'#65656e'  }">
+      Новые
+    </button>
+    <button class="sort-span" v-on:click="changeOrder('old')"
+            v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">
+      Старые
+    </button>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
-    ::before
   </div>
 </template>
 
@@ -22,7 +30,7 @@ export default {
     return {
       comments: null,
       child: null,
-      order:'popular',
+      order: 'popular',
     }
   },
   props: {
@@ -72,9 +80,16 @@ export default {
  active font color #9f9fa1
  -->
 <style scoped>
+
+.main-textarea {
+  width: 450px;
+  height: 100px;
+  resize: none;
+}
+
 .sort-span {
   cursor: pointer;
-  background-color:#101013;
+  background-color: #101013;
   border: 0px;
   color: #65656e;
 }
@@ -84,7 +99,6 @@ export default {
   font-size: 25px;
   color: #bbbbbd;
 }
-
 
 
 .card-body {
