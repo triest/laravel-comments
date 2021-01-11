@@ -1938,7 +1938,10 @@ __webpack_require__.r(__webpack_exports__);
       message: ""
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log("childs in comment");
+    console.log(this.childs);
+  },
   methods: {
     getChild: function getChild(parent_id) {},
     saveNewMessage: function saveNewMessage(message) {
@@ -1958,7 +1961,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2044,6 +2046,7 @@ __webpack_require__.r(__webpack_exports__);
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.getChild(this.comment);
   },
   methods: {
     checkLike: function checkLike() {
@@ -2137,7 +2140,11 @@ __webpack_require__.r(__webpack_exports__);
       return false;
     },
     getChild: function getChild(item) {
+      console.log("redy to push");
+
       for (var i = 0; i < this.childs.length; i++) {
+        console.log(this.childs);
+
         if (item.id === this.childs[i].parent_id) {
           this.childdsGett.push(this.childs[i]);
         }
@@ -2253,6 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -2275,8 +2283,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var temp = null;
-      this.comments = [];
-      this.child = [];
       axios.get('api/comment', {
         params: {
           order: this.order
@@ -38860,18 +38866,11 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.getChild(_vm.comment)
-        ? _c(
-            "div",
-            [
-              _c("comment", {
-                attrs: { comments: _vm.childdsGett, childs: _vm.childs }
-              })
-            ],
-            1
-          )
-        : _vm._e()
-    ]
+      _c("comment", {
+        attrs: { comments: _vm.childdsGett, childs: _vm.childs }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -39026,7 +39025,8 @@ var render = function() {
             return _vm.getComments()
           }
         }
-      })
+      }),
+      _vm._v("\n  ::before\n")
     ],
     1
   )

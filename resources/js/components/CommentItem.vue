@@ -44,9 +44,8 @@
                 v-model="comment_text"></textarea><br>
       <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
     </div>
-    <div v-if="getChild(comment)">
+
       <comment :comments="childdsGett" :childs="childs"></comment>
-    </div>
 
   </div>
 </template>
@@ -85,6 +84,7 @@ export default {
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.getChild(this.comment)
   },
 
   methods:
@@ -167,7 +167,9 @@ export default {
           return false;
         },
         getChild(item) {
+          console.log("redy to push")
           for (let i = 0; i < this.childs.length; i++) {
+            console.log(this.childs);
             if (item.id === this.childs[i].parent_id) {
               this.childdsGett.push(this.childs[i])
             }

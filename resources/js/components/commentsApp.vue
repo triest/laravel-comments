@@ -8,6 +8,7 @@
     <span class="sort-span" v-on:click="changeOrder('new')">Новые</span>
     <span class="sort-span" v-on:click="changeOrder('old')">Старые</span>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
+    ::before
   </div>
 </template>
 
@@ -35,8 +36,7 @@ export default {
       {
         getComments() {
           let temp = null;
-          this.comments = [];
-          this.child = []
+
           axios.get('api/comment', {params: {order: this.order}})
               .then((response) => {
                 temp = response.data;

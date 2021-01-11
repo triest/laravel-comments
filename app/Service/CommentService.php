@@ -37,17 +37,18 @@ class CommentService
     public function getChild($order = 'popular')
     {
         if ($order == 'new') {
-            return Comment::select(['*'])->whereNotNull(['parent_id'])->with('like')->with('user')->orderBy('created_at',
+            $comment = Comment::select(['*'])->whereNotNull(['parent_id'])->with('like')->with('user')->orderBy('created_at',
                     'desc')->get();
         }
         if ($order == 'old') {
-            return Comment::select(['*'])->whereNotNull(['parent_id'])->with('like')->with('user')->orderBy('created_at',
+            $comment = Comment::select(['*'])->whereNotNull(['parent_id'])->with('like')->with('user')->orderBy('created_at',
                     'desc')->get();
         } elseif ($order == 'popular') {
-            return Comment::select(['*'])->where(['parent_id' => null])->with('like')->with('user')->orderBy('rating',
+            $comment = Comment::select(['*'])->whereNotNull(['parent_id'])->with('like')->with('user')->orderBy('rating',
                     'asc')->get();
         }
-        return null;
+
+        return $comment;
     }
 
     public function create($text, $parent_id = null)
@@ -55,7 +56,7 @@ class CommentService
         $user = Auth::user();
 
         if ($user == null) {
-                return;
+            return;
         }
 
         $comment = new Comment();

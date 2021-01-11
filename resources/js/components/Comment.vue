@@ -30,7 +30,8 @@ export default {
     }
   },
   mounted() {
-
+     console.log("childs in comment")
+      console.log(this.childs)
   },
   methods:
       {
