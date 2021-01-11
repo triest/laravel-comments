@@ -2300,6 +2300,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -6832,7 +6835,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.main-textarea[data-v-6c52a412] {\r\n  width: 450px;\r\n  height: 100px;\r\n  resize: none;\n}\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  background-color: #101013;\r\n  border: 0px;\r\n  color: #65656e;\n}\n.comment-label[data-v-6c52a412] {\r\n  font-size: 25px;\r\n  color: #bbbbbd;\n}\n.card-body[data-v-6c52a412] {\r\n  background-size: cover;\r\n  background-color: #19191e;\r\n  width: 300px;\r\n  height: 300px;\r\n  color: #a2a2a5;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
+exports.push([module.i, "\n.main-textarea[data-v-6c52a412] {\r\n  width: 450px;\r\n  height: 100px;\r\n  resize: none;\n}\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  background-color: #101013;\r\n  border: 0px;\r\n  color: #65656e;\n}\n.comment-label[data-v-6c52a412] {\r\n  font-size: 25px;\r\n  color: #bbbbbd;\n}\n.card-body[data-v-6c52a412] {\r\n  background-size: cover;\r\n  background-color: #19191e;\r\n  width: 300px;\r\n  height: 300px;\r\n  color: #a2a2a5;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\n.rules-span[data-v-6c52a412] {\r\n  position: relative;\r\n  margin-left: 30px;\r\n  color: #9f9fa1;\n}\r\n", ""]);
 
 // exports
 
@@ -39082,6 +39085,8 @@ var render = function() {
         [_vm._v("\n    Старые\n  ")]
       ),
       _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
       _c("comment", {
         attrs: { comments: _vm.comments, childs: _vm.child, user: _vm.user },
         on: {
@@ -39094,7 +39099,33 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "rules-span", staticStyle: { "text-align": "right" } },
+      [
+        _c(
+          "span",
+          {
+            staticClass: "rules",
+            staticStyle: {
+              "text-align": "right",
+              position: "relative",
+              "margin-right": "0px",
+              "max-width": "20px",
+              width: "20px"
+            }
+          },
+          [_vm._v("Правила")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

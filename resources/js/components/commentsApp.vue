@@ -18,6 +18,9 @@
             v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">
       Старые
     </button>
+    <span class="rules-span" style="text-align: right">
+         <span class="rules" style="text-align: right;position: relative;margin-right: 0px;max-width: 20px;width: 20px">Правила</span>
+    </span>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
   </div>
 </template>
@@ -113,5 +116,11 @@ export default {
 
 .container {
   font-family: Roboto, serif;
+}
+
+.rules-span {
+  position: relative;
+  margin-left: 30px;
+  color: #9f9fa1;
 }
 </style>
