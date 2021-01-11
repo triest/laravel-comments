@@ -17,10 +17,10 @@
                     <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                  {{ likesNum }}
                   <span class="like grow" v-on:click="newLike(comment.id)" >
-                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:colorLike}"></i>
+                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{'-webkit-text-stroke-color':colorLike}"></i>
                   </span>
                    <span class="dislike grow" v-on:click="dislike(comment.id)" >
-                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{color:colorDislike}"></i>
+                        <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer" v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
                </span>
 
@@ -63,7 +63,7 @@ export default {
       required: false
     },
     user: {
-      type: Number,
+      type: Object,
       required: false
     },
   },
@@ -91,7 +91,7 @@ export default {
             return ;
           }
           for (let i = 0; i < this.comment.like.length; i++) {
-            if(this.comment.like[i].user_id===this.user && this.comment.like[i].value===1){
+            if(this.comment.like[i].user_id===this.user.id && this.comment.like[i].value===1){
                this.colorLike="green";
               return ;
             }
@@ -224,12 +224,22 @@ export default {
 
       }
 }
-Vue.filter('moment-ago', function (date) {
-  return moment(date).fromNow()
-})
 </script>
 
 <style lang="scss" scoped>
+
+.fa-thumbs-up{
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+.fa-thumbs-down{
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
 .comment-rating {
 
   font-family: Roboto;
@@ -328,6 +338,8 @@ Vue.filter('moment-ago', function (date) {
     display: inline-block;
     cursor: pointer;
     margin: 10px;
+    border-color: white;
+    border: 1px;
   }
 
   .dislike:hover,

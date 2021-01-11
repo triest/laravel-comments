@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <textarea v-model="comment_text" placeholder="Введите сообщение!"></textarea><br><br>
-    <button @click="send">Отправить</button>
+    <button @click="send">Отправить</button><br>
+
+    Комментарии
     <span class="sort-span" v-on:click="changeOrder('popular')">Популярные</span>
     <span class="sort-span" v-on:click="changeOrder('new')">Новые</span>
     <span class="sort-span" v-on:click="changeOrder('old')">Старые</span>
@@ -21,7 +23,7 @@ export default {
   },
   props: {
     user: {
-      type: Number,
+      type: Object,
       required: false
     },
 

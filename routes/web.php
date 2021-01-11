@@ -19,7 +19,9 @@ Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function (){
+    return view('home');
+})->name('home');
 
 Route::resource('api/comment', CommentController::class)->except('create','edit');
 Route::post('api/comment/like','CommentController@like');

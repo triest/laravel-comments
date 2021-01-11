@@ -1924,7 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Number,
+      type: Object,
       required: false
     },
     childs: {
@@ -2022,7 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Number,
+      type: Object,
       required: false
     }
   },
@@ -2049,7 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       for (var i = 0; i < this.comment.like.length; i++) {
-        if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === 1) {
+        if (this.comment.like[i].user_id === this.user.id && this.comment.like[i].value === 1) {
           this.colorLike = "green";
           return;
         }
@@ -2193,9 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-Vue.filter('moment-ago', function (date) {
-  return moment(date).fromNow();
-});
 
 /***/ }),
 
@@ -2250,6 +2247,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -2260,7 +2259,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     user: {
-      type: Number,
+      type: Object,
       required: false
     }
   },
@@ -6745,7 +6744,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".comment-rating[data-v-c63b9012] {\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n  word-wrap: break-word;\n  width: 400px;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}\n.css-clock .rating[data-v-c63b9012] {\n  display: inline-block;\n  width: 100%;\n  margin-top: 40px;\n  padding-top: 40px;\n  text-align: center;\n}\n.css-clock .like[data-v-c63b9012],\n.css-clock .dislike[data-v-c63b9012] {\n  display: inline-block;\n  cursor: pointer;\n  margin: 10px;\n}\n.css-clock .dislike[data-v-c63b9012]:hover,\n.css-clock .like[data-v-c63b9012]:hover {\n  color: #2EBDD1;\n  transition: all 0.2s ease-in-out;\n  transform: scale(1.1);\n  cursor: pointer;\n}\n.css-clock .like[data-v-c63b9012] {\n  cursor: pointer;\n}\n.css-clock .active[data-v-c63b9012] {\n  color: #2EBDD1;\n}", ""]);
+exports.push([module.i, ".fa-thumbs-up[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n}\n.fa-thumbs-down[data-v-c63b9012] {\n  -webkit-text-fill-color: transparent;\n  /* Will override color (regardless of order) */\n  -webkit-text-stroke-width: 1px;\n  -webkit-text-stroke-color: white;\n}\n.comment-rating[data-v-c63b9012] {\n  font-family: Roboto;\n}\n.text[data-v-c63b9012] {\n  color: grey;\n  font-family: Roboto;\n  word-wrap: break-word;\n  width: 400px;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.answerButton[data-v-c63b9012] {\n  cursor: pointer;\n}\n.avatar[data-v-c63b9012] {\n  flex: 1;\n  display: flex;\n}\n.avatar img[data-v-c63b9012] {\n  width: 30px;\n  height: 30px;\n  border-radius: 70%;\n  margin-right: 10px;\n}\n.wrapper[data-v-c63b9012] {\n  margin: 0 auto;\n  background-color: transparent;\n  width: 1px;\n  display: inline-block;\n}\n.css-clock[data-v-c63b9012] {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: transparent;\n  border-color: red;\n  filter: alpha(Opacity=70);\n  border: 1rem solid;\n  border-color: white;\n  border-width: thin;\n  position: relative;\n  display: block;\n}\n.css-clock[data-v-c63b9012]::before {\n  content: \"\";\n  height: 6px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  left: 9px;\n  top: 3px;\n  opacity: 0.6;\n}\n.css-clock[data-v-c63b9012]::after {\n  content: \"\";\n  height: 5px;\n  width: 2px;\n  background-color: white;\n  display: block;\n  position: absolute;\n  top: 7px;\n  left: 11px;\n  transform: rotate(135deg);\n  opacity: 0.6;\n}\n.css-clock .rating[data-v-c63b9012] {\n  display: inline-block;\n  width: 100%;\n  margin-top: 40px;\n  padding-top: 40px;\n  text-align: center;\n}\n.css-clock .like[data-v-c63b9012],\n.css-clock .dislike[data-v-c63b9012] {\n  display: inline-block;\n  cursor: pointer;\n  margin: 10px;\n  border-color: white;\n  border: 1px;\n}\n.css-clock .dislike[data-v-c63b9012]:hover,\n.css-clock .like[data-v-c63b9012]:hover {\n  color: #2EBDD1;\n  transition: all 0.2s ease-in-out;\n  transform: scale(1.1);\n  cursor: pointer;\n}\n.css-clock .like[data-v-c63b9012] {\n  cursor: pointer;\n}\n.css-clock .active[data-v-c63b9012] {\n  color: #2EBDD1;\n}", ""]);
 
 // exports
 
@@ -38765,7 +38764,7 @@ var render = function() {
                         _c("i", {
                           staticClass: "fa fa-thumbs-up fa-1x like",
                           staticStyle: { cursor: "pointer" },
-                          style: { color: _vm.colorLike },
+                          style: { "-webkit-text-stroke-color": _vm.colorLike },
                           attrs: { "aria-hidden": "true" }
                         })
                       ]
@@ -38785,7 +38784,9 @@ var render = function() {
                         _c("i", {
                           staticClass: "fa fa-thumbs-down fa-1x like",
                           staticStyle: { cursor: "pointer" },
-                          style: { color: _vm.colorDislike },
+                          style: {
+                            "-webkit-text-stroke-color": _vm.colorDislike
+                          },
                           attrs: { "aria-hidden": "true" }
                         })
                       ]
@@ -38960,7 +38961,8 @@ var render = function() {
       _c("br"),
       _vm._v(" "),
       _c("button", { on: { click: _vm.send } }, [_vm._v("Отправить")]),
-      _vm._v(" "),
+      _c("br"),
+      _vm._v("\n\n  Комментарии\n  "),
       _c(
         "span",
         {

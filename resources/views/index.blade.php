@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="col md-4">
-        <comment-app :user="{{Auth::user()->id}}"></comment-app>
+        <comment-app :user="{{Auth::user()}}"></comment-app>
     </div>
 @endsection

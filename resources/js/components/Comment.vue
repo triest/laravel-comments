@@ -15,7 +15,7 @@ export default {
       required: false
     },
     user: {
-      type: Number,
+      type: Object,
       required: false
     },
     childs: {
