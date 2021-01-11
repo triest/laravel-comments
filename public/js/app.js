@@ -2282,7 +2282,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       comments: null,
-      child: null
+      child: null,
+      order: 'popular'
     };
   },
   props: {
@@ -6808,7 +6809,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  background-color:#101013;\r\n  border: 0px;\r\n  color: #707079;\n}\n.comment-label[data-v-6c52a412] {\r\n  font-size: 25px;\r\n  color: #bbbbbd;\n}\n.card-body[data-v-6c52a412] {\r\n  background-size: cover;\r\n  background-color: #19191e;\r\n  width: 300px;\r\n  height: 300px;\r\n  color: #a2a2a5;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
+exports.push([module.i, "\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  background-color:#101013;\r\n  border: 0px;\r\n  color: #65656e;\n}\n.comment-label[data-v-6c52a412] {\r\n  font-size: 25px;\r\n  color: #bbbbbd;\n}\n.card-body[data-v-6c52a412] {\r\n  background-size: cover;\r\n  background-color: #19191e;\r\n  width: 300px;\r\n  height: 300px;\r\n  color: #a2a2a5;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
 
 // exports
 
@@ -39002,7 +39003,11 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "sort-span active",
+          staticClass: "sort-span",
+          style: {
+            "background-color": _vm.order === "popular" ? "#19191e" : "#101013",
+            color: _vm.order === "popular" ? "#9f9fa1" : "#65656e"
+          },
           on: {
             click: function($event) {
               return _vm.changeOrder("popular")
@@ -39016,6 +39021,10 @@ var render = function() {
         "button",
         {
           staticClass: "sort-span",
+          style: {
+            "background-color": _vm.order === "new" ? "#19191e" : "#101013",
+            color: _vm.order === "new" ? "#9f9fa1" : "#65656e"
+          },
           on: {
             click: function($event) {
               return _vm.changeOrder("new")
@@ -39029,6 +39038,10 @@ var render = function() {
         "button",
         {
           staticClass: "sort-span",
+          style: {
+            "background-color": _vm.order === "old" ? "#19191e" : "#101013",
+            color: _vm.order === "old" ? "#9f9fa1" : "#65656e"
+          },
           on: {
             click: function($event) {
               return _vm.changeOrder("old")

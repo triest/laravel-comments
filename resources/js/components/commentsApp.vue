@@ -6,9 +6,9 @@
     <span class="comment-label">
     Комментарии
     </span>
-    <button class="sort-span active" v-on:click="changeOrder('popular')">Популярные</button>
-    <button class="sort-span" v-on:click="changeOrder('new')">Новые</button>
-    <button class="sort-span" v-on:click="changeOrder('old')">Старые</button>
+    <button class="sort-span" v-on:click="changeOrder('popular')" v-bind:style="{ 'background-color': order==='popular' ? '#19191e' : '#101013' ,'color': order==='popular' ?  '#9f9fa1':'#65656e'  }" >Популярные</button>
+    <button class="sort-span" v-on:click="changeOrder('new')" v-bind:style="{ 'background-color': order==='new' ? '#19191e' : '#101013' ,'color': order==='new' ?  '#9f9fa1':'#65656e'  }">Новые</button>
+    <button class="sort-span" v-on:click="changeOrder('old')" v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">Старые</button>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
     ::before
   </div>
@@ -21,8 +21,8 @@ export default {
   data() {
     return {
       comments: null,
-      child: null
-
+      child: null,
+      order:'popular',
     }
   },
   props: {
@@ -66,14 +66,17 @@ export default {
 }
 </script>
 <!--
- #19191e
+ default background color #101013
+ default-font-color #65656e
+ active backgrounf color #19191e
+ active font color #9f9fa1
  -->
 <style scoped>
 .sort-span {
   cursor: pointer;
   background-color:#101013;
   border: 0px;
-  color: #707079;
+  color: #65656e;
 }
 
 
