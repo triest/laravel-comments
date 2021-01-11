@@ -2015,6 +2015,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -2276,6 +2279,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -38793,8 +38798,20 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("ответить")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-reply",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     ),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fa fa-share-alt" }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-ban",
+                      attrs: { "aria-hidden": "true" }
+                    }),
                     _vm._v(" "),
                     _c(
                       "span",
@@ -39085,6 +39102,8 @@ var render = function() {
         [_vm._v("\n    Старые\n  ")]
       ),
       _vm._v(" "),
+      _c("use", { attrs: { "xlink:href": "#icon--ui__share" } }),
+      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _c("comment", {
@@ -39108,6 +39127,7 @@ var staticRenderFns = [
       "span",
       { staticClass: "rules-span", staticStyle: { "text-align": "right" } },
       [
+        _vm._v("\n        ⓘ\n       "),
         _c(
           "span",
           {

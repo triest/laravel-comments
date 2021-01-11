@@ -6,7 +6,7 @@
           <div class="control">
             <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
                title="Оценить комментарий"></a>
-            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" >
+            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{  }}
@@ -14,7 +14,10 @@
                             <i class="css-clock"></i>
                 </span> {{ time(comment.created_at) }}
 
-                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)"><i class="fa fa-reply" aria-hidden="true"></i></span>
+                 <i class="fa fa-share-alt"></i>
+                 <i class="fa fa-ban" aria-hidden="true"></i>
+
                  <span class="like-span" style="text-align: right">
                   <span class="like grow" v-on:click="newLike(comment.id)">
                         <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;"
@@ -24,7 +27,7 @@
                         <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer"
                            v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
-                     <span class="likesNum"  v-bind:style="{'color':setLikeNumberColor }">
+                     <span class="likesNum" v-bind:style="{'color':setLikeNumberColor }">
                        {{ likesNum }}
                    </span>
                  </span>
@@ -80,7 +83,7 @@ export default {
       likesNum: 0,
       colorLike: "dimgray",
       colorDislike: "dimgray",
-      numColor:"dimgray"
+      numColor: "dimgray"
     }
   },
   mounted() {
@@ -90,19 +93,19 @@ export default {
     this.getChild(this.comment)
   },
 
-  computed:{
-      setLikeNumberColor:function(){
-        console.log("num like")
-        console.log(this.likesNum)
+  computed: {
+    setLikeNumberColor: function () {
+      console.log("num like")
+      console.log(this.likesNum)
 
-            if(this.likesNum>0){
-              return     'green';
-            } else if(this.likesNum===0){
-              return  'dimgray';
-            } else {
-              return    'red';
-            }
+      if (this.likesNum > 0) {
+        return 'green';
+      } else if (this.likesNum === 0) {
+        return 'dimgray';
+      } else {
+        return 'red';
       }
+    }
   },
 
   methods:
@@ -148,9 +151,9 @@ export default {
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
             temp = data.data.result;
-            if(temp===false){
-           //   that.colorDislike = "green";
-              return ;
+            if (temp === false) {
+              //   that.colorDislike = "green";
+              return;
             }
             that.colorDislike = "dimgray";
             if (temp.value === 0) {
@@ -169,9 +172,9 @@ export default {
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
             temp = data.data.result;
-            if(temp===false){
+            if (temp === false) {
               that.colorDislike = "red";
-              return ;
+              return;
             }
             that.colorLike = "dimgray";
             if (temp.value === 0) {
@@ -283,7 +286,6 @@ li::before {
   margin-left: 400px;
   display: block;
 }
-
 
 
 .avatar {

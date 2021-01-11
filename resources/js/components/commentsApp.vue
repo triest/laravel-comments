@@ -18,7 +18,9 @@
             v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">
       Старые
     </button>
+    <use xlink:href="#icon--ui__share"></use>
     <span class="rules-span" style="text-align: right">
+          &#9432;
          <span class="rules" style="text-align: right;position: relative;margin-right: 0px;max-width: 20px;width: 20px">Правила</span>
     </span>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
