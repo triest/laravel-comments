@@ -6808,7 +6808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.comment-label[data-v-6c52a412]{\r\n  font-size: 25px;\r\n  font-color:#bbbbbd;\r\n  color: #bbbbbd;\n}\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  color: #76777c;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
+exports.push([module.i, "\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  background-color:#101013;\r\n  border: 0px;\r\n  color: #707079;\n}\n.comment-label[data-v-6c52a412] {\r\n  font-size: 25px;\r\n  color: #bbbbbd;\n}\n.card-body[data-v-6c52a412] {\r\n  background-size: cover;\r\n  background-color: #19191e;\r\n  width: 300px;\r\n  height: 300px;\r\n  color: #a2a2a5;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
 
 // exports
 
@@ -39000,9 +39000,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c(
-        "span",
+        "button",
         {
-          staticClass: "sort-span",
+          staticClass: "sort-span active",
           on: {
             click: function($event) {
               return _vm.changeOrder("popular")
@@ -39013,7 +39013,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "span",
+        "button",
         {
           staticClass: "sort-span",
           on: {
@@ -39026,7 +39026,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "span",
+        "button",
         {
           staticClass: "sort-span",
           on: {

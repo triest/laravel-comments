@@ -6,9 +6,9 @@
     <span class="comment-label">
     Комментарии
     </span>
-    <span class="sort-span" v-on:click="changeOrder('popular')">Популярные</span>
-    <span class="sort-span" v-on:click="changeOrder('new')">Новые</span>
-    <span class="sort-span" v-on:click="changeOrder('old')">Старые</span>
+    <button class="sort-span active" v-on:click="changeOrder('popular')">Популярные</button>
+    <button class="sort-span" v-on:click="changeOrder('new')">Новые</button>
+    <button class="sort-span" v-on:click="changeOrder('old')">Старые</button>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
     ::before
   </div>
@@ -22,6 +22,7 @@ export default {
     return {
       comments: null,
       child: null
+
     }
   },
   props: {
@@ -64,17 +65,33 @@ export default {
       }
 }
 </script>
-
+<!--
+ #19191e
+ -->
 <style scoped>
-.comment-label{
+.sort-span {
+  cursor: pointer;
+  background-color:#101013;
+  border: 0px;
+  color: #707079;
+}
+
+
+.comment-label {
   font-size: 25px;
-  font-color:#bbbbbd;
   color: #bbbbbd;
 }
 
-.sort-span {
+
+
+.card-body {
+  background-size: cover;
+  background-color: #19191e;
+  width: 300px;
+  height: 300px;
+  color: #a2a2a5;
   cursor: pointer;
-  color: #76777c;
+  border-radius: 5px;
 }
 
 .container {
