@@ -1,12 +1,12 @@
 <template>
   <div class="body" v-bind:style="[comment.parent_id!=null  ? {pagination:15} : {pagination:0}]">
-      <div class="body-top">
-        <div class="header">
-          <div class="right-block">
-            <div class="control">
-              <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
-                 title="Оценить комментарий"></a>
-              <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
+    <div class="body-top">
+      <div class="header">
+        <div class="right-block">
+          <div class="control">
+            <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
+               title="Оценить комментарий"></a>
+            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{  }}
@@ -16,9 +16,11 @@
 
                  <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                  <span class="like-span" style="text-align: right">
-                 {{ likesNum }}
+                   <span style="text-align: right">
+                        {{ likesNum }}
+                   </span>
                   <span class="like grow" v-on:click="newLike(comment.id)">
-                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;float: right"
+                        <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;"
                            v-bind:style="{'-webkit-text-stroke-color':colorLike}"></i>
                   </span>
                    <span class="dislike grow" v-on:click="dislike(comment.id)">
@@ -30,22 +32,22 @@
 
             </span>
 
-            </div>
           </div>
         </div>
-
       </div>
 
-      <div class="text">
-        {{ comment.text }}
-      </div>
-      <div v-if="showAnswerFormVariable===true">
+    </div>
+
+    <div class="text">
+      {{ comment.text }}
+    </div>
+    <div v-if="showAnswerFormVariable===true">
       <textarea id="answer" :name="'comment'+comment.id" ref="'comment'+comment.id"
                 v-model="comment_text"></textarea><br>
-        <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
-      </div>
+      <button value="Ответить" v-on:click="answer(comment.id)">Ответить</button>
+    </div>
 
-      <comment :comments="childdsGett" :childs="childs"></comment>
+    <comment :comments="childdsGett" :childs="childs"></comment>
 
   </div>
 </template>
@@ -237,11 +239,11 @@ export default {
   border-left: 1px solid red;
 }
 
-li::before{
+li::before {
   border-left: 1px solid red;
 }
 
-.li{
+.li {
   border-left: 1px solid white;
 }
 
@@ -259,19 +261,24 @@ li::before{
 }
 
 .like {
-  float: right;
+ // position: relative;
+ // float: right;
 }
 
-.avatar{
+.dislike {
+  //float: right;
+}
+
+.avatar {
   color: #949497;
 }
 
 .avatar.like {
-  float: right;
+  //float: right;
 }
 
 .avatar.dislike {
-  float: right;
+ // float: right;
 }
 
 .fa-thumbs-down {
@@ -330,8 +337,8 @@ li::before{
 }
 
 .css-clock {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background-color: transparent;
   border-color: red;
@@ -349,20 +356,20 @@ li::before{
     background-color: white;
     display: block;
     position: absolute;
-    left: 9px;
+    left: 6px;
     top: 3px;
     opacity: 0.6;
   }
 
   &::after {
     content: "";
-    height: 5px;
+    height: 5.5px;
     width: 2px;
     background-color: white;
     display: block;
     position: absolute;
-    top: 7px;
-    left: 11px;
+    top: 3.5px;
+    left: 3.5px;
     transform: rotate(135deg);
     opacity: 0.6;
   }
