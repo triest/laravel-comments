@@ -2097,14 +2097,20 @@ __webpack_require__.r(__webpack_exports__);
         'comment_id': comment_id,
         'action': 'like'
       }).then(function (data) {
-        temp = data.data.result.value;
+        temp = data.data.result;
+
+        if (temp === false) {
+          that.colorDislike = "green";
+          return;
+        }
+
         that.colorDislike = "dimgray";
 
-        if (temp === 0) {
+        if (temp.value === 0) {
           that.colorLike = "dimgray";
-        } else if (temp === 1) {
+        } else if (temp.value === 1) {
           that.colorLike = "green";
-        } else if (temp === -1) {
+        } else if (temp.value === -1) {
           that.colorLike = "red";
         }
 
@@ -2118,14 +2124,20 @@ __webpack_require__.r(__webpack_exports__);
         'comment_id': comment_id,
         'action': 'dislike'
       }).then(function (data) {
-        temp = data.data.result.value;
+        temp = data.data.result;
+
+        if (temp === false) {
+          that.colorDislike = "red";
+          return;
+        }
+
         that.colorLike = "dimgray";
 
-        if (temp === 0) {
+        if (temp.value === 0) {
           that.colorDislike = "dimgray";
-        } else if (temp === 1) {
+        } else if (temp.value === 1) {
           that.colorDislike = "green";
-        } else if (temp === -1) {
+        } else if (temp.value === -1) {
           that.colorDislike = "red";
         }
 
@@ -38721,7 +38733,6 @@ var render = function() {
                 "span",
                 {
                   staticClass: "comment-rating comment-plus",
-                  staticStyle: {},
                   attrs: { "data-reply-show-user-id": "1211953" }
                 },
                 [
@@ -38763,14 +38774,6 @@ var render = function() {
                         staticStyle: { "text-align": "right" }
                       },
                       [
-                        _c("span", { staticStyle: { "text-align": "right" } }, [
-                          _vm._v(
-                            "\n                      " +
-                              _vm._s(_vm.likesNum) +
-                              "\n                 "
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c(
                           "span",
                           {
@@ -38813,7 +38816,15 @@ var render = function() {
                               attrs: { "aria-hidden": "true" }
                             })
                           ]
-                        )
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "likesNum" }, [
+                          _vm._v(
+                            "\n                     " +
+                              _vm._s(_vm.likesNum) +
+                              "\n                 "
+                          )
+                        ])
                       ]
                     )
                   ])

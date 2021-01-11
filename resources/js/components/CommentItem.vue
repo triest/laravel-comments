@@ -6,7 +6,7 @@
           <div class="control">
             <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
                title="Оценить комментарий"></a>
-            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" style="inline">
+            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" >
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{  }}
@@ -16,9 +16,6 @@
 
                  <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
                  <span class="like-span" style="text-align: right">
-                   <span style="text-align: right">
-                        {{ likesNum }}
-                   </span>
                   <span class="like grow" v-on:click="newLike(comment.id)">
                         <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;"
                            v-bind:style="{'-webkit-text-stroke-color':colorLike}"></i>
@@ -27,6 +24,9 @@
                         <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer"
                            v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
+                     <span class="likesNum">
+                       {{ likesNum }}
+                   </span>
                  </span>
                </span>
 
@@ -131,13 +131,17 @@ export default {
           let that = this;
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
-            temp = data.data.result.value;
+            temp = data.data.result;
+            if(temp===false){
+              that.colorDislike = "green";
+              return ;
+            }
             that.colorDislike = "dimgray";
-            if (temp === 0) {
+            if (temp.value === 0) {
               that.colorLike = "dimgray";
-            } else if (temp === 1) {
+            } else if (temp.value === 1) {
               that.colorLike = "green";
-            } else if (temp === -1) {
+            } else if (temp.value === -1) {
               that.colorLike = "red";
             }
             that.likesNum += 1;
@@ -148,13 +152,17 @@ export default {
           let that = this;
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
-            temp = data.data.result.value;
+            temp = data.data.result;
+            if(temp===false){
+              that.colorDislike = "red";
+              return ;
+            }
             that.colorLike = "dimgray";
-            if (temp === 0) {
+            if (temp.value === 0) {
               that.colorDislike = "dimgray";
-            } else if (temp === 1) {
+            } else if (temp.value === 1) {
               that.colorDislike = "green";
-            } else if (temp === -1) {
+            } else if (temp.value === -1) {
               that.colorDislike = "red";
             }
             that.likesNum -= 1;
@@ -260,25 +268,10 @@ li::before {
   display: block;
 }
 
-.like {
- // position: relative;
- // float: right;
-}
 
-.dislike {
-  //float: right;
-}
 
 .avatar {
   color: #949497;
-}
-
-.avatar.like {
-  //float: right;
-}
-
-.avatar.dislike {
- // float: right;
 }
 
 .fa-thumbs-down {
