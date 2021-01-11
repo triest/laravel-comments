@@ -2041,7 +2041,8 @@ __webpack_require__.r(__webpack_exports__);
       showAnswerFormVariable: false,
       likesNum: 0,
       colorLike: "dimgray",
-      colorDislike: "dimgray"
+      colorDislike: "dimgray",
+      numColor: "dimgray"
     };
   },
   mounted: function mounted() {
@@ -2049,6 +2050,20 @@ __webpack_require__.r(__webpack_exports__);
     this.checkLike();
     this.checkDislike();
     this.getChild(this.comment);
+  },
+  computed: {
+    setLikeNumberColor: function setLikeNumberColor() {
+      console.log("num like");
+      console.log(this.likesNum);
+
+      if (this.likesNum > 0) {
+        return 'green';
+      } else if (this.likesNum === 0) {
+        return 'dimgray';
+      } else {
+        return 'red';
+      }
+    }
   },
   methods: {
     checkLike: function checkLike() {
@@ -38829,13 +38844,20 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("span", { staticClass: "likesNum" }, [
-                          _vm._v(
-                            "\n                     " +
-                              _vm._s(_vm.likesNum) +
-                              "\n                 "
-                          )
-                        ])
+                        _c(
+                          "span",
+                          {
+                            staticClass: "likesNum",
+                            style: { color: _vm.setLikeNumberColor }
+                          },
+                          [
+                            _vm._v(
+                              "\n                     " +
+                                _vm._s(_vm.likesNum) +
+                                "\n                 "
+                            )
+                          ]
+                        )
                       ]
                     )
                   ])

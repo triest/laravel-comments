@@ -24,7 +24,7 @@
                         <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer"
                            v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
-                     <span class="likesNum">
+                     <span class="likesNum"  v-bind:style="{'color':setLikeNumberColor }">
                        {{ likesNum }}
                    </span>
                  </span>
@@ -79,7 +79,8 @@ export default {
       showAnswerFormVariable: false,
       likesNum: 0,
       colorLike: "dimgray",
-      colorDislike: "dimgray"
+      colorDislike: "dimgray",
+      numColor:"dimgray"
     }
   },
   mounted() {
@@ -87,6 +88,21 @@ export default {
     this.checkLike();
     this.checkDislike();
     this.getChild(this.comment)
+  },
+
+  computed:{
+      setLikeNumberColor:function(){
+        console.log("num like")
+        console.log(this.likesNum)
+
+            if(this.likesNum>0){
+              return     'green';
+            } else if(this.likesNum===0){
+              return  'dimgray';
+            } else {
+              return    'red';
+            }
+      }
   },
 
   methods:
