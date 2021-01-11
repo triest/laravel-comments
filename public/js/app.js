@@ -2275,6 +2275,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -6806,7 +6808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  color: #76777c;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
+exports.push([module.i, "\n.comment-label[data-v-6c52a412]{\r\n  font-size: 25px;\r\n  font-color:#bbbbbd;\r\n  color: #bbbbbd;\n}\n.sort-span[data-v-6c52a412] {\r\n  cursor: pointer;\r\n  color: #76777c;\n}\n.container[data-v-6c52a412] {\r\n  font-family: Roboto, serif;\n}\r\n", ""]);
 
 // exports
 
@@ -38990,8 +38992,13 @@ var render = function() {
       _c("br"),
       _vm._v(" "),
       _c("button", { on: { click: _vm.send } }, [_vm._v("Отправить")]),
+      _vm._v(" "),
       _c("br"),
-      _vm._v("\n\n  Комментарии\n  "),
+      _vm._v(" "),
+      _c("span", { staticClass: "comment-label" }, [
+        _vm._v("\n  Комментарии\n  ")
+      ]),
+      _vm._v(" "),
       _c(
         "span",
         {

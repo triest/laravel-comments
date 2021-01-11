@@ -1,9 +1,11 @@
 <template>
   <div class="container">
     <textarea v-model="comment_text" placeholder="Введите сообщение!"></textarea><br><br>
-    <button @click="send">Отправить</button><br>
-
+    <button @click="send">Отправить</button>
+    <br>
+    <span class="comment-label">
     Комментарии
+    </span>
     <span class="sort-span" v-on:click="changeOrder('popular')">Популярные</span>
     <span class="sort-span" v-on:click="changeOrder('new')">Новые</span>
     <span class="sort-span" v-on:click="changeOrder('old')">Старые</span>
@@ -49,10 +51,10 @@ export default {
           let that = this;
           axios.post('api/comment', {'text': this.comment_text}).then(function (data) {
             that.comments.push(data.data[0])
-            that.comment_text="";
-          }).catch(function (){
+            that.comment_text = "";
+          }).catch(function () {
             alert("Ошибка! Повторите позже или обратитесь к администратору")
-            that.showAnswerFormVariable=false;
+            that.showAnswerFormVariable = false;
           })
         },
         changeOrder(order) {
@@ -64,6 +66,12 @@ export default {
 </script>
 
 <style scoped>
+.comment-label{
+  font-size: 25px;
+  font-color:#bbbbbd;
+  color: #bbbbbd;
+}
+
 .sort-span {
   cursor: pointer;
   color: #76777c;
