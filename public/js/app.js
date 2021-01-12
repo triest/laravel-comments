@@ -1924,7 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
     childs: {
@@ -1938,11 +1938,15 @@ __webpack_require__.r(__webpack_exports__);
       message: ""
     };
   },
-  mounted: function mounted() {
-    console.log("childs in comment");
-    console.log(this.childs);
+  created: function created() {
+    this.$parent.$on('update', this.setValue);
   },
+  mounted: function mounted() {},
   methods: {
+    setValue: function setValue(value) {
+      this.$emit('update');
+      console.log("setValue");
+    },
     getChild: function getChild(parent_id) {},
     saveNewMessage: function saveNewMessage(message) {
       this.$emit('new', message);
@@ -2015,6 +2019,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -2030,7 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     }
   },
@@ -2049,13 +2057,14 @@ __webpack_require__.r(__webpack_exports__);
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.childdsGett = [];
     this.getChild(this.comment);
   },
   computed: {
+    updateOrder: function updateOrder() {
+      this.getChild(this.comment);
+    },
     setLikeNumberColor: function setLikeNumberColor() {
-      console.log("num like");
-      console.log(this.likesNum);
-
       if (this.likesNum > 0) {
         return 'green';
       } else if (this.likesNum === 0) {
@@ -2065,7 +2074,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  created: function created() {
+    this.$parent.$on('update', this.setValue);
+  },
   methods: {
+    setValue: function setValue(value) {
+      console.log("setValueIn Comment Item");
+      this.calculate_likes();
+      this.checkLike();
+      this.checkDislike();
+      this.childdsGett = [];
+      this.getChild(this.comment);
+    },
     checkLike: function checkLike() {
       if (typeof this.user == "undefined") {
         this.colorLike = "dimgray";
@@ -2130,7 +2150,13 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         that.likesNum += 1;
-      })["catch"]();
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+      });
     },
     dislike: function dislike(comment_id) {
       var that = this;
@@ -2157,7 +2183,13 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         that.likesNum -= 1;
-      })["catch"]();
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+      });
     },
     checkChild: function checkChild(item) {
       for (var i = 0; i < this.childs.length; i++) {
@@ -2169,11 +2201,9 @@ __webpack_require__.r(__webpack_exports__);
       return false;
     },
     getChild: function getChild(item) {
-      console.log("redy to push");
+      this.childdsGett = [];
 
       for (var i = 0; i < this.childs.length; i++) {
-        console.log(this.childs);
-
         if (item.id === this.childs[i].parent_id) {
           this.childdsGett.push(this.childs[i]);
         }
@@ -2198,8 +2228,13 @@ __webpack_require__.r(__webpack_exports__);
         that.showAnswerFormVariable = false;
         that.childdsGett.push(data2[0]);
         that.comment_text = "";
-      })["catch"](function () {
-        alert("Ошибка! Повторите позже или обратитесь к администратору");
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+
         that.showAnswerFormVariable = false;
       });
     },
@@ -2303,6 +2338,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "commentsApp",
   data: function data() {
@@ -2314,7 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     }
   },
@@ -2335,6 +2372,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.comments = temp.root;
         _this.child = temp.child;
       });
+      this.$emit('update');
     },
     send: function send() {
       var that = this;
@@ -2343,8 +2381,13 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (data) {
         that.comments.push(data.data[0]);
         that.comment_text = "";
-      })["catch"](function () {
-        alert("Ошибка! Повторите позже или обратитесь к администратору");
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+
         that.showAnswerFormVariable = false;
       });
     },
@@ -38793,8 +38836,20 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("ответить")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-reply",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     ),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fa fa-share-alt" }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-ban",
+                      attrs: { "aria-hidden": "true" }
+                    }),
                     _vm._v(" "),
                     _c(
                       "span",
@@ -39085,6 +39140,8 @@ var render = function() {
         [_vm._v("\n    Старые\n  ")]
       ),
       _vm._v(" "),
+      _c("use", { attrs: { "xlink:href": "#icon--ui__share" } }),
+      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _c("comment", {
@@ -39108,6 +39165,7 @@ var staticRenderFns = [
       "span",
       { staticClass: "rules-span", staticStyle: { "text-align": "right" } },
       [
+        _vm._v("\n        ⓘ\n       "),
         _c(
           "span",
           {

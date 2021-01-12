@@ -18,7 +18,9 @@
             v-bind:style="{ 'background-color': order==='old' ? '#19191e' : '#101013' ,'color': order==='old' ?  '#9f9fa1':'#65656e'  }">
       Старые
     </button>
+    <use xlink:href="#icon--ui__share"></use>
     <span class="rules-span" style="text-align: right">
+          &#9432;
          <span class="rules" style="text-align: right;position: relative;margin-right: 0px;max-width: 20px;width: 20px">Правила</span>
     </span>
     <comment :comments="comments" :childs="child" @new="getComments()" :user="user"></comment>
@@ -38,7 +40,7 @@ export default {
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
 
@@ -57,15 +59,19 @@ export default {
                 this.comments = temp.root;
                 this.child = temp.child;
               });
-
+          this.$emit('update');
         },
         send() {
           let that = this;
           axios.post('api/comment', {'text': this.comment_text}).then(function (data) {
             that.comments.push(data.data[0])
             that.comment_text = "";
-          }).catch(function () {
-            alert("Ошибка! Повторите позже или обратитесь к администратору")
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
             that.showAnswerFormVariable = false;
           })
         },

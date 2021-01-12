@@ -6,7 +6,7 @@
           <div class="control">
             <a href="javascript://" data-reply-rating="minus" data-reply-rating-id="1211953"
                title="Оценить комментарий"></a>
-            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953" >
+            <span class="comment-rating comment-plus" data-reply-show-user-id="1211953">
                <span class="avatar">
                   <img src="images/avatar.jpg" alt="avatar" width="30" height="30">
                      {{  }}
@@ -14,7 +14,11 @@
                             <i class="css-clock"></i>
                 </span> {{ time(comment.created_at) }}
 
-                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)">ответить</span>
+                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)"><i class="fa fa-reply"
+                                                                                       aria-hidden="true"></i></span>
+                 <i class="fa fa-share-alt"></i>
+                 <i class="fa fa-ban" aria-hidden="true"></i>
+
                  <span class="like-span" style="text-align: right">
                   <span class="like grow" v-on:click="newLike(comment.id)">
                         <i class="fa fa-thumbs-up fa-1x like" aria-hidden="true" style="cursor: pointer;"
@@ -24,7 +28,7 @@
                         <i class="fa fa-thumbs-down fa-1x like" aria-hidden="true" style="cursor: pointer"
                            v-bind:style="{'-webkit-text-stroke-color':colorDislike}"></i>
                   </span>
-                     <span class="likesNum"  v-bind:style="{'color':setLikeNumberColor }">
+                     <span class="likesNum" v-bind:style="{'color':setLikeNumberColor }">
                        {{ likesNum }}
                    </span>
                  </span>
@@ -68,7 +72,7 @@ export default {
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
   },
@@ -80,33 +84,46 @@ export default {
       likesNum: 0,
       colorLike: "dimgray",
       colorDislike: "dimgray",
-      numColor:"dimgray"
+      numColor: "dimgray"
     }
   },
   mounted() {
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.childdsGett = [];
     this.getChild(this.comment)
   },
 
-  computed:{
-      setLikeNumberColor:function(){
-        console.log("num like")
-        console.log(this.likesNum)
+  computed: {
+    updateOrder: function () {
+      this.getChild(this.comment)
+    },
+    setLikeNumberColor: function () {
 
-            if(this.likesNum>0){
-              return     'green';
-            } else if(this.likesNum===0){
-              return  'dimgray';
-            } else {
-              return    'red';
-            }
+      if (this.likesNum > 0) {
+        return 'green';
+      } else if (this.likesNum === 0) {
+        return 'dimgray';
+      } else {
+        return 'red';
       }
+    }
+  },
+  created: function () {
+    this.$parent.$on('update', this.setValue);
   },
 
   methods:
       {
+        setValue: function (value) {
+          console.log("setValueIn Comment Item")
+          this.calculate_likes();
+          this.checkLike();
+          this.checkDislike();
+          this.childdsGett = [];
+          this.getChild(this.comment)
+        },
         checkLike() {
           if (typeof this.user == "undefined") {
             this.colorLike = "dimgray";
@@ -148,9 +165,9 @@ export default {
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'like'}).then(function (data) {
             temp = data.data.result;
-            if(temp===false){
-           //   that.colorDislike = "green";
-              return ;
+            if (temp === false) {
+              //   that.colorDislike = "green";
+              return;
             }
             that.colorDislike = "dimgray";
             if (temp.value === 0) {
@@ -162,16 +179,22 @@ export default {
             }
             that.likesNum += 1;
 
-          }).catch()
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
+          })
         },
         dislike(comment_id) {
           let that = this;
           let temp = null;
           axios.post('api/comment/like', {'comment_id': comment_id, 'action': 'dislike'}).then(function (data) {
             temp = data.data.result;
-            if(temp===false){
+            if (temp === false) {
               that.colorDislike = "red";
-              return ;
+              return;
             }
             that.colorLike = "dimgray";
             if (temp.value === 0) {
@@ -182,7 +205,13 @@ export default {
               that.colorDislike = "red";
             }
             that.likesNum -= 1;
-          }).catch()
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
+          })
         },
         checkChild(item) {
           for (let i = 0; i < this.childs.length; i++) {
@@ -193,9 +222,9 @@ export default {
           return false;
         },
         getChild(item) {
-          console.log("redy to push")
+          this.childdsGett = [];
           for (let i = 0; i < this.childs.length; i++) {
-            console.log(this.childs);
+
             if (item.id === this.childs[i].parent_id) {
               this.childdsGett.push(this.childs[i])
             }
@@ -216,8 +245,12 @@ export default {
             that.showAnswerFormVariable = false;
             that.childdsGett.push(data2[0]);
             that.comment_text = "";
-          }).catch(function () {
-            alert("Ошибка! Повторите позже или обратитесь к администратору")
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
             that.showAnswerFormVariable = false;
           })
         },
@@ -283,7 +316,6 @@ li::before {
   margin-left: 400px;
   display: block;
 }
-
 
 
 .avatar {

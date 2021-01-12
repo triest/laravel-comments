@@ -15,7 +15,7 @@ export default {
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
     childs: {
@@ -29,12 +29,18 @@ export default {
       message: ""
     }
   },
+  created: function() {
+    this.$parent.$on('update', this.setValue);
+  },
   mounted() {
-    console.log("childs in comment")
-    console.log(this.childs)
+
   },
   methods:
       {
+        setValue: function(value) {
+          this.$emit('update');
+            console.log("setValue")
+        },
         getChild(parent_id) {
 
         },
