@@ -32,4 +32,11 @@ class RLike extends FormRequest
                 'comment_id' => 'exists:comments,id',
         ];
     }
+
+    public function messages()
+    {
+        return [
+                'comment_id.exists' => 'Комментарий не найден',
+        ];
+    }
 }

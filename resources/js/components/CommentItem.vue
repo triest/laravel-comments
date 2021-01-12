@@ -129,6 +129,10 @@ export default {
             this.colorLike = "dimgray";
             return;
           }
+          if(typeof this.comment.like == "undefined"){
+              return ;
+          }
+
           for (let i = 0; i < this.comment.like.length; i++) {
             if (this.comment.like[i].user_id === this.user.id && this.comment.like[i].value === 1) {
               this.colorLike = "green";
@@ -142,6 +146,9 @@ export default {
             this.colorDislike = "dimgray"
             return;
           }
+          if(typeof this.comment.like == "undefined"){
+            return ;
+          }
 
           for (let i = 0; i < this.comment.like.length; i++) {
             if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === -1) {
@@ -153,6 +160,9 @@ export default {
           this.colorDislike = "dimgray"
         },
         calculate_likes() {
+          if(typeof this.comment.like == "undefined"){
+            return ;
+          }
           let accum = 0;
           for (let i = 0; i < this.comment.like.length; i++) {
             accum += this.comment.like[i].value

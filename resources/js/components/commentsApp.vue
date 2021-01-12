@@ -67,10 +67,12 @@ export default {
             that.comments.push(data.data[0])
             that.comment_text = "";
           }).catch(function (error) {
+
+
             if (error.response.status === 403) {
               alert('Не авторизован')
             } else {
-              alert(error.response.data.message)
+              alert(error.response.data.errors.text)
             }
             that.showAnswerFormVariable = false;
           })

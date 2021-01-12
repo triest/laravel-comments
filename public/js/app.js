@@ -2092,6 +2092,10 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      if (typeof this.comment.like == "undefined") {
+        return;
+      }
+
       for (var i = 0; i < this.comment.like.length; i++) {
         if (this.comment.like[i].user_id === this.user.id && this.comment.like[i].value === 1) {
           this.colorLike = "green";
@@ -2107,6 +2111,10 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      if (typeof this.comment.like == "undefined") {
+        return;
+      }
+
       for (var i = 0; i < this.comment.like.length; i++) {
         if (this.comment.like[i].user_id === this.user && this.comment.like[i].value === -1) {
           this.colorDislike = "red";
@@ -2117,6 +2125,10 @@ __webpack_require__.r(__webpack_exports__);
       this.colorDislike = "dimgray";
     },
     calculate_likes: function calculate_likes() {
+      if (typeof this.comment.like == "undefined") {
+        return;
+      }
+
       var accum = 0;
 
       for (var i = 0; i < this.comment.like.length; i++) {
@@ -2385,7 +2397,7 @@ __webpack_require__.r(__webpack_exports__);
         if (error.response.status === 403) {
           alert('Не авторизован');
         } else {
-          alert(error.response.data.message);
+          alert(error.response.data.errors.text);
         }
 
         that.showAnswerFormVariable = false;

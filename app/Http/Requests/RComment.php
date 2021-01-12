@@ -32,4 +32,12 @@ class RComment extends FormRequest
                 'parent_id' => 'exists:comments,id',
         ];
     }
+
+    public function messages()
+    {
+        return [
+                'text.required' => 'Введите текст комментария!',
+                'parent_id.exists' => 'Не найден комментария, на который вы отвечаете',
+        ];
+    }
 }
