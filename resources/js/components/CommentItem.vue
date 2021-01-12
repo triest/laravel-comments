@@ -179,7 +179,13 @@ export default {
             }
             that.likesNum += 1;
 
-          }).catch()
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
+          })
         },
         dislike(comment_id) {
           let that = this;
@@ -199,7 +205,13 @@ export default {
               that.colorDislike = "red";
             }
             that.likesNum -= 1;
-          }).catch()
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
+          })
         },
         checkChild(item) {
           for (let i = 0; i < this.childs.length; i++) {
@@ -233,8 +245,12 @@ export default {
             that.showAnswerFormVariable = false;
             that.childdsGett.push(data2[0]);
             that.comment_text = "";
-          }).catch(function () {
-            alert("Ошибка! Повторите позже или обратитесь к администратору")
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
             that.showAnswerFormVariable = false;
           })
         },

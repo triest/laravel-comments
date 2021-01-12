@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\RComment;
+use App\Http\Requests\RLike;
 use App\Http\Resources\CommentResourse;
 use App\Service\CommentService;
 use Illuminate\Http\Request;
@@ -98,7 +99,7 @@ class CommentController extends Controller
         //
     }
 
-    public function like(Request $request)
+    public function like(RLike $request)
     {
         $user = Auth::user();
 

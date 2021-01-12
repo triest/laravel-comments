@@ -66,8 +66,12 @@ export default {
           axios.post('api/comment', {'text': this.comment_text}).then(function (data) {
             that.comments.push(data.data[0])
             that.comment_text = "";
-          }).catch(function () {
-            alert("Ошибка! Повторите позже или обратитесь к администратору")
+          }).catch(function (error) {
+            if (error.response.status === 403) {
+              alert('Не авторизован')
+            } else {
+              alert(error.response.data.message)
+            }
             that.showAnswerFormVariable = false;
           })
         },

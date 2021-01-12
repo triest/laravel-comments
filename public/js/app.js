@@ -2150,7 +2150,13 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         that.likesNum += 1;
-      })["catch"]();
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+      });
     },
     dislike: function dislike(comment_id) {
       var that = this;
@@ -2177,7 +2183,13 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         that.likesNum -= 1;
-      })["catch"]();
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+      });
     },
     checkChild: function checkChild(item) {
       for (var i = 0; i < this.childs.length; i++) {
@@ -2216,8 +2228,13 @@ __webpack_require__.r(__webpack_exports__);
         that.showAnswerFormVariable = false;
         that.childdsGett.push(data2[0]);
         that.comment_text = "";
-      })["catch"](function () {
-        alert("Ошибка! Повторите позже или обратитесь к администратору");
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+
         that.showAnswerFormVariable = false;
       });
     },
@@ -2364,8 +2381,13 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (data) {
         that.comments.push(data.data[0]);
         that.comment_text = "";
-      })["catch"](function () {
-        alert("Ошибка! Повторите позже или обратитесь к администратору");
+      })["catch"](function (error) {
+        if (error.response.status === 403) {
+          alert('Не авторизован');
+        } else {
+          alert(error.response.data.message);
+        }
+
         that.showAnswerFormVariable = false;
       });
     },
