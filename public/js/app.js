@@ -1924,7 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
     childs: {
@@ -1938,11 +1938,15 @@ __webpack_require__.r(__webpack_exports__);
       message: ""
     };
   },
-  mounted: function mounted() {
-    console.log("childs in comment");
-    console.log(this.childs);
+  created: function created() {
+    this.$parent.$on('update', this.setValue);
   },
+  mounted: function mounted() {},
   methods: {
+    setValue: function setValue(value) {
+      this.$emit('update');
+      console.log("setValue");
+    },
     getChild: function getChild(parent_id) {},
     saveNewMessage: function saveNewMessage(message) {
       this.$emit('new', message);
@@ -2018,6 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -2033,7 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     }
   },
@@ -2052,13 +2057,14 @@ __webpack_require__.r(__webpack_exports__);
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.childdsGett = [];
     this.getChild(this.comment);
   },
   computed: {
+    updateOrder: function updateOrder() {
+      this.getChild(this.comment);
+    },
     setLikeNumberColor: function setLikeNumberColor() {
-      console.log("num like");
-      console.log(this.likesNum);
-
       if (this.likesNum > 0) {
         return 'green';
       } else if (this.likesNum === 0) {
@@ -2068,7 +2074,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  created: function created() {
+    this.$parent.$on('update', this.setValue);
+  },
   methods: {
+    setValue: function setValue(value) {
+      console.log("setValueIn Comment Item");
+      this.calculate_likes();
+      this.checkLike();
+      this.checkDislike();
+      this.childdsGett = [];
+      this.getChild(this.comment);
+    },
     checkLike: function checkLike() {
       if (typeof this.user == "undefined") {
         this.colorLike = "dimgray";
@@ -2172,11 +2189,9 @@ __webpack_require__.r(__webpack_exports__);
       return false;
     },
     getChild: function getChild(item) {
-      console.log("redy to push");
+      this.childdsGett = [];
 
       for (var i = 0; i < this.childs.length; i++) {
-        console.log(this.childs);
-
         if (item.id === this.childs[i].parent_id) {
           this.childdsGett.push(this.childs[i]);
         }
@@ -2319,7 +2334,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     }
   },
@@ -2340,6 +2355,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.comments = temp.root;
         _this.child = temp.child;
       });
+      this.$emit('update');
     },
     send: function send() {
       var that = this;

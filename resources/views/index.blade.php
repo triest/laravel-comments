@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="col md-4">
-        <comment-app :user="{{Auth::user()}}"></comment-app>
+        @if(isset(Auth::user()->id))
+            <comment-app :user="{{Auth::user()->id}}"></comment-app>
+        @else
+            <comment-app></comment-app>
+        @endauth
     </div>
 @endsection

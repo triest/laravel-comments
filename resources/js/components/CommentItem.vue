@@ -14,7 +14,8 @@
                             <i class="css-clock"></i>
                 </span> {{ time(comment.created_at) }}
 
-                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)"><i class="fa fa-reply" aria-hidden="true"></i></span>
+                 <span class="answerButton" v-on:click="showAnswerForm(comment.id)"><i class="fa fa-reply"
+                                                                                       aria-hidden="true"></i></span>
                  <i class="fa fa-share-alt"></i>
                  <i class="fa fa-ban" aria-hidden="true"></i>
 
@@ -71,7 +72,7 @@ export default {
       required: false
     },
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
   },
@@ -90,13 +91,15 @@ export default {
     this.calculate_likes();
     this.checkLike();
     this.checkDislike();
+    this.childdsGett = [];
     this.getChild(this.comment)
   },
 
   computed: {
+    updateOrder: function () {
+      this.getChild(this.comment)
+    },
     setLikeNumberColor: function () {
-      console.log("num like")
-      console.log(this.likesNum)
 
       if (this.likesNum > 0) {
         return 'green';
@@ -107,9 +110,20 @@ export default {
       }
     }
   },
+  created: function () {
+    this.$parent.$on('update', this.setValue);
+  },
 
   methods:
       {
+        setValue: function (value) {
+          console.log("setValueIn Comment Item")
+          this.calculate_likes();
+          this.checkLike();
+          this.checkDislike();
+          this.childdsGett = [];
+          this.getChild(this.comment)
+        },
         checkLike() {
           if (typeof this.user == "undefined") {
             this.colorLike = "dimgray";
@@ -196,9 +210,9 @@ export default {
           return false;
         },
         getChild(item) {
-          console.log("redy to push")
+          this.childdsGett = [];
           for (let i = 0; i < this.childs.length; i++) {
-            console.log(this.childs);
+
             if (item.id === this.childs[i].parent_id) {
               this.childdsGett.push(this.childs[i])
             }

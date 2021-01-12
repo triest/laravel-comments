@@ -40,7 +40,7 @@ export default {
   },
   props: {
     user: {
-      type: Object,
+      type: Number,
       required: false
     },
 
@@ -59,7 +59,7 @@ export default {
                 this.comments = temp.root;
                 this.child = temp.child;
               });
-
+          this.$emit('update');
         },
         send() {
           let that = this;
